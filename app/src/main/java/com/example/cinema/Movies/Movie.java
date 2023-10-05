@@ -1,24 +1,30 @@
 package com.example.cinema.Movies;
 
+import android.graphics.drawable.Drawable;
+
+import com.example.cinema.MainActivity;
+
 import java.util.ArrayList;
 
 public class Movie {
-    int id, thumbnailID, trailerUrlId, bookingUrlId, duration;
-    String title, description;
+    int id, duration;
+    Drawable thumbnail;
+    String title, description,category,trailerUrl, bookingUrl;
     float ticketPrice;
-    ArrayList<String> comment, category;
+    ArrayList<String> comment;
+
 
 
 
     // Constructor
-    public Movie(int id, int thumbnailID, int trailerUrlId, int bookingUrlId
+    public Movie(int id, Drawable thumbnail, String trailerUrlId, String bookingUrlId
             , String title, String description, float ticketPrice
-            , ArrayList<String> comment, ArrayList<String> category, int duration) {
+            , ArrayList<String> comment, String category, int duration) {
         this.id = id;
+        this.thumbnail = thumbnail;
         this.duration = duration;
-        this.thumbnailID = thumbnailID;
-        this.trailerUrlId = trailerUrlId;
-        this.bookingUrlId = bookingUrlId;
+        this.trailerUrl = trailerUrlId;
+        this.bookingUrl = bookingUrlId;
         this.title = title;
         this.description = description;
         this.ticketPrice = ticketPrice;
@@ -31,16 +37,13 @@ public class Movie {
         return id;
     }
 
-    public int getThumbnailID() {
-        return thumbnailID;
+
+    public String getTrailerUrlId() {
+        return trailerUrl;
     }
 
-    public int getTrailerUrlId() {
-        return trailerUrlId;
-    }
-
-    public int getBookingUrlId() {
-        return bookingUrlId;
+    public String getBookingUrlId() {
+        return bookingUrl;
     }
 
     public String getTitle() {
@@ -59,7 +62,7 @@ public class Movie {
         return comment;
     }
 
-    public ArrayList<String> getCategory() {
+    public String getCategory() {
         return category;
     }
     public int getDuration() {
@@ -70,16 +73,12 @@ public class Movie {
         this.id = id;
     }
 
-    public void setThumbnailID(int thumbnailID) {
-        this.thumbnailID = thumbnailID;
+    public void setTrailerUrlId(String trailerUrlId) {
+        this.trailerUrl = trailerUrlId;
     }
 
-    public void setTrailerUrlId(int trailerUrlId) {
-        this.trailerUrlId = trailerUrlId;
-    }
-
-    public void setBookingUrlId(int bookingUrlId) {
-        this.bookingUrlId = bookingUrlId;
+    public void setBookingUrlId(String bookingUrlId) {
+        this.bookingUrl = bookingUrlId;
     }
 
     public void setDuration(int duration) {
@@ -102,15 +101,9 @@ public class Movie {
         this.comment = comment;
     }
 
-    public void setCategory(ArrayList<String> category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    // Static method to initiate dumpy data
-    public static ArrayList<Movie> initMovie() {
-        ArrayList<Movie> movieList = new ArrayList<>();
-
-        return movieList;
-    }
 
 }

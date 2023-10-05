@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Cinema</string>
+
+    <array name="movie_title">
+        <item>Kumathon</item>
+    </array>
+    <array name="movie_trailer">
+        <item>https://www.youtube.com/watch?v=XC3ftnZ1WYk</item>
+    </array>
+    <array name="movie_description">
+        <item>The story happened when \" Ging \" took his son on vacation at the house in the middle of the forest. There was a strange man who broke into the house and kidnapped her son. Ging went to report the police, so she knew that the man named \" In \" was an undertaker at the temple. But the undertaker said he didn \' t break into the house. Ging had to find evidence to blame the undertaker but couldn \' t catch it. And Ging still had to face the secret story that happened in the house, so she looked for \" Hike \" in the forest to ask for help. But returned to the forest and happened to see \" In \" doing a ritual to take the child \' s body to make a child. In chased the branch until she lost consciousness. When \" Nop \" came to the Ging \' s girlfriend came to the house with \" Pam \", the nurse who helped him. She found that the branch was unconscious like a madman.</item>
+    </array>
+    <array name="movie_booking">
+        <item>https://www.cgv.vn/en/kumarn.html</item>
+    </array>
+    <integer-array name="movie_duration">
+        <item>88</item>
+    </integer-array>
+    <array name="movie_category">
+        <item>Horror</item>
+    </array>
 </resources>
