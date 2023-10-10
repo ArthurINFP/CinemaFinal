@@ -9,17 +9,57 @@ import java.util.ArrayList;
 public class Movie {
     int id, duration;
     Drawable thumbnail;
-    String title, description,category,trailerUrl, bookingUrl;
+    String title, description,category,trailerUrl, bookingUrl,releaseDate;
     float ticketPrice;
     ArrayList<String> comment;
 
+    boolean favorite;
 
 
+    public Drawable getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(Drawable thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getTrailerUrl() {
+        return trailerUrl;
+    }
+
+    public void setTrailerUrl(String trailerUrl) {
+        this.trailerUrl = trailerUrl;
+    }
+
+    public String getBookingUrl() {
+        return bookingUrl;
+    }
+
+    public void setBookingUrl(String bookingUrl) {
+        this.bookingUrl = bookingUrl;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
 
     // Constructor
     public Movie(int id, Drawable thumbnail, String trailerUrlId, String bookingUrlId
             , String title, String description, float ticketPrice
-            , ArrayList<String> comment, String category, int duration) {
+            , ArrayList<String> comment, String category, int duration,String releaseDate,boolean favorite) {
         this.id = id;
         this.thumbnail = thumbnail;
         this.duration = duration;
@@ -30,6 +70,8 @@ public class Movie {
         this.ticketPrice = ticketPrice;
         this.comment = comment;
         this.category = category;
+        this.releaseDate = releaseDate;
+        this.favorite = favorite;
     }
 
     // All setter and getter

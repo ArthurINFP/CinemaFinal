@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Cinema</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+
 
     <array name="movie_title">
-        <!--        Showing Movies-->
+
         <item>Kumathon</item>
         <item>Exorcist:Believer</item>
         <item>Dr.Cheon And The Lost Talisman</item>
@@ -12,18 +15,19 @@
         <item>The Nun 2</item>
         <item>Batman Begins</item>
 
-        <!--        Upcoming Movies -->
+
         <item>Hunger Games</item>
         <item>It Lives Inside</item>
-        <item>Người Mặt Trời</item>
+        <item>Day Dreamers</item>
         <item>The Dark Knight</item>
         <item>The Marvels</item>
         <item>Dune 2</item>
-        <item>Five nights at Freddy's</item>
+        <item>Five nights at Freddy\'s</item>
         <item>Cobweb</item>
     </array>
+
     <array name="movie_trailer">
-        <!--        Showing Movies-->
+
         <item>https://www.youtube.com/watch?v=XC3ftnZ1WYk</item>
         <item>https://www.youtube.com/watch?v=rSGeC880CYw</item>
         <item>https://www.youtube.com/watch?v=6NuQArwFhlA</item>
@@ -34,7 +38,6 @@
         <item>https://www.youtube.com/watch?v=neY2xVmOfUM</item>
 
 
-        <!--        Upcoming Movies -->
         <item>https://www.youtube.com/watch?v=RDE6Uz73A7g</item>
         <item>https://www.youtube.com/watch?v=FrPYOf5RmYI</item>
         <item>https://www.youtube.com/watch?v=L3t9jW4eRAs</item>
@@ -44,29 +47,150 @@
         <item>https://www.youtube.com/watch?v=Z_T0o5uNrlY</item>
         <item>https://www.youtube.com/watch?v=yusx3Gma9jI</item>
     </array>
-    <array name="movie_description">
-        <!--        Showing Movies-->
-        <item>The story happened when \" Ging \" took his son on vacation at the house in the middle of the forest. There was a strange man who broke into the house and kidnapped her son. Ging went to report the police, so she knew that the man named \" In \" was an undertaker at the temple. But the undertaker said he didn \' t break into the house. Ging had to find evidence to blame the undertaker but couldn \' t catch it. And Ging still had to face the secret story that happened in the house, so she looked for \" Hike \" in the forest to ask for help. But returned to the forest and happened to see \" In \" doing a ritual to take the child \' s body to make a child. In chased the branch until she lost consciousness. When \" Nop \" came to the Ging \' s girlfriend came to the house with \" Pam \", the nurse who helped him. She found that the branch was unconscious like a madman.</item>
-        <item>When single father Victor Fielding's daughter, Angela, and her friend Katherine, show signs of demonic possession, it unleashes a chain of events that forces him to confront the nadir of evil. Terrified and desperate, he seeks out Chris MacNeil, the only person alive who's witnessed anything like it before.</item>
-        <item>The story of a fake exorcist, Dr. Cheon, who is commissioned for the case of a girl who is strongly possessed.</item>
-        <item>In Korea, Na Young, a girl and Hae Sung, a boy are school mates and good friends. They often walk back home together after school. Na Young moves to Canada and then to New York with her parents. Hae Sung continues living in Korea, does his engineering course, goes through a short spell of military service and then takes up a job. Both keep in touch periodically through video chats where they talk of their past and general stuff. Meanwhile in New York, Na has changed her name to Nora, made a name as a playwright and is happily married to Arthur, an American. Hae is keen to meet Nora and visits her in New York where he spends some time with her and Arthur. What has the future in store for Nora and Hae in their relationship?</item>
-        <item>Amid a future war between the human race and the forces of artificial intelligence, Joshua, a hardened ex-special forces agent grieving the disappearance of his wife, is recruited to hunt down and kill the Creator, the elusive architect of advanced AI who has developed a mysterious weapon with the power to end the war-and mankind itself.</item>
-        <item>A new generation of stars join the world's top action stars for an adrenaline-fueled adventure in Expend4bles. Reuniting as the team of elite mercenaries, Jason Statham, Dolph Lundgren, Randy Couture, and Sylvester Stallone are joined for the first time by Curtis "50 Cent" Jackson, Megan Fox, Tony Jaa, Iko Uwais, Jacob Scipio, Levy Tran, and Andy Garcia. Armed with every weapon they can get their hands on and the skills to use them, The Expendables are the world's last line of defense and the team that gets called when all other options are off the table. But new team members with new styles and tactics are going to give "new blood" a whole new meaning.</item>
-        <item>A follow-up to the enigmatic gothic horror about a strong evil that haunts and causes supernatural harm to everybody it comes into contact with. After the events of the first film, the said powerful evil now begins to spread in 1956 throughout a town in France as word gets out that a priest has been violently murdered. A finished contemplative in her novitiate, Sister Irene, begins to investigate the murder, only to find a demon behind it -- the same evil that terrorized her in the original film as a nun -- Valak, whom she once again soon comes to encounter.</item>
-        <item>When his parents are killed, billionaire playboy Bruce Wayne relocates to Asia, where he is mentored by Henri Ducard and Ra's Al Ghul in how to fight evil. When learning about the plan to wipe out evil in Gotham City by Ducard, Bruce prevents this plan from getting any further and heads back to his home. Back in his original surroundings, Bruce adopts the image of a bat to strike fear into the criminals and the corrupt as the icon known as \"Batman"\. But it doesn't stay quiet for long.</item>
 
-        <!--        Upcoming Movies -->
-        <item>Coriolanus Snow at age 18, years before he would become the tyrannical President of Panem. Young Coriolanus is handsome and charming, and though the Snow family has fallen on hard times, he sees a chance for a change in his fortunes when he is chosen to be a mentor for the Tenth Hunger Games. Only to have his elation dashed when he is assigned to mentor the girl tribute from impoverished District 12.</item>
-        <item>Sam, an Indian-American teen, lives in an idyllic suburb with her conservative mother and her assimilated father. Sam's cultural insecurities grow due to her estranged friend, Tamira, who mysteriously carries around an empty mason jar all the time. In a moment of anger, Sam breaks Tamira's jar and unleashes an ancient Indian demonic force that kidnaps Tamira. Sam searches for Tamira, following the trail of a young man who performed a deadly ritual, until the demonic entity starts targeting her, murdering her boyfriend and shattering her reality with terrifying visions. Sam must band together with her parents and a sympathetic teacher to save Tamira and put an end to the terror of the demon.</item>
-        <item>400 năm qua, loài Ma Cà Rồng đã bí mật sống giữa loài người trong hòa bình, nhưng hiểm họa bỗng ập đến khi một cô gái loài người phát hiện được thân phận của hai anh em Ma Cà Rồng. Người anh khát máu quyết săn lùng cô để bảo vệ bí mật giống loài, trong khi người còn lại chạy đua với thời gian để bảo vệ cô bằng mọi giá.</item>
-        <item>Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James Gordon, and new District Attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind known only as \"The Joker"\ appears in Gotham, creating a new wave of chaos. Batman's struggle against The Joker becomes deeply personal, forcing him to \"confront everything he believes"\ and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent, and Rachel Dawes.</item>
-        <item>Carol Danvers AKA Captain Marvel has reclaimed her identity from the tyrannical Kree and taken revenge on the Supreme Intelligence. But unintended consequences see Carol shouldering the burden of a destabilized universe. When her duties send her to an anomalous wormhole linked to a Kree revolutionary, her powers become entangled with that of Jersey City super-fan Kamala Khan, aka Ms. Marvel, and Carol's estranged niece, now S.A.B.E.R. astronaut Captain Monica Rambeau.</item>
-        <item>This follow-up film will explore the mythic journey of Paul Atreides as he unites with Chani and the Fremen while on a warpath of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, he endeavors to prevent a terrible future only he can foresee.</item>
-        <item>Mike Schmidt, a night guard at a local diner, becomes troubled after confronting the truth about the animatronic costumes that reside: they aren't just robots. They are alive. Will he be able to survive all five nights at this haunted diner? Or is something more sinister at play?</item>
-        <item>In the 1970s, Director Kim is obsessed by the desire to re-shoot the ending of his completed film Cobweb, but chaos and turmoil grip the set with interference from the censorship authorities, and the complaints of actors and producers who can't understand the re-written ending. Will Kim be able to find a way through this chaos to fulfill his artistic ambitions and complete his masterpiece?</item>
+    <array name="movie_release_date">
+        <item>10/06/2023</item>
+        <item>10/06/2023</item>
+        <item>10/06/2023</item>
+        <item>09/29/2023</item>
+        <item>09/29/2023</item>
+        <item>09/22/2023</item>
+        <item>09/08/2023</item>
+        <item>09/27/2023</item>
+
+        <item>11/17/2023</item>
+        <item>10/20/2023</item>
+        <item>12/08/2023</item>
+        <item>10/18/2023</item>
+        <item>11/10/2023</item>
+        <item>11/03/2023</item>
+        <item>10/27/2023</item>
+        <item>10/13/2023</item>
     </array>
+    <array name="movie_description">
+
+        <item>The story happened when \" Ging \" took his son on vacation at the house in the middle
+            of the forest. There was a strange man who broke into the house and kidnapped her son.
+            Ging went to report the police, so she knew that the man named \" In \" was an
+            undertaker at the temple. But the undertaker said he didn \' t break into the house.
+            Ging had to find evidence to blame the undertaker but couldn \' t catch it. And Ging
+            still had to face the secret story that happened in the house, so she looked for \" Hike
+            \" in the forest to ask for help. But returned to the forest and happened to see \" In
+            \" doing a ritual to take the child \' s body to make a child. In chased the branch
+            until she lost consciousness. When \" Nop \" came to the Ging \' s girlfriend came to
+            the house with \" Pam \", the nurse who helped him. She found that the branch was
+            unconscious like a madman.
+        </item>
+        <item>When single father Victor Fielding\'s daughter, Angela, and her friend Katherine, show
+            signs of demonic possession, it unleashes a chain of events that forces him to confront
+            the nadir of evil. Terrified and desperate, he seeks out Chris MacNeil, the only person
+            alive who\'s witnessed anything like it before.
+        </item>
+        <item>The story of a fake exorcist, Dr. Cheon, who is commissioned for the case of a girl
+            who is strongly possessed.
+        </item>
+        <item>In Korea, Na Young, a girl and Hae Sung, a boy are school mates and good friends. They
+            often walk back home together after school. Na Young moves to Canada and then to New
+            York with her parents. Hae Sung continues living in Korea, does his engineering course,
+            goes through a short spell of military service and then takes up a job. Both keep in
+            touch periodically through video chats where they talk of their past and general stuff.
+            Meanwhile in New York, Na has changed her name to Nora, made a name as a playwright and
+            is happily married to Arthur, an American. Hae is keen to meet Nora and visits her in
+            New York where he spends some time with her and Arthur. What has the future in store for
+            Nora and Hae in their relationship?
+        </item>
+        <item>Amid a future war between the human race and the forces of artificial intelligence,
+            Joshua, a hardened ex-special forces agent grieving the disappearance of his wife, is
+            recruited to hunt down and kill the Creator, the elusive architect of advanced AI who
+            has developed a mysterious weapon with the power to end the war-and mankind itself.
+        </item>
+        <item>A new generation of stars join the world\'s top action stars for an adrenaline-fueled
+            adventure in Expend4bles. Reuniting as the team of elite mercenaries, Jason Statham,
+            Dolph Lundgren, Randy Couture, and Sylvester Stallone are joined for the first time by
+            Curtis \"50 Cent\" Jackson, Megan Fox, Tony Jaa, Iko Uwais, Jacob Scipio, Levy Tran, and
+            Andy Garcia. Armed with every weapon they can get their hands on and the skills to use
+            them, The Expendables are the world\'s last line of defense and the team that gets
+            called when all other options are off the table. But new team members with new styles
+            and tactics are going to give \"new blood\" a whole new meaning.
+        </item>
+        <item>A follow-up to the enigmatic gothic horror about a strong evil that haunts and causes
+            supernatural harm to everybody it comes into contact with. After the events of the first
+            film, the said powerful evil now begins to spread in 1956 throughout a town in France as
+            word gets out that a priest has been violently murdered. A finished contemplative in her
+            novitiate, Sister Irene, begins to investigate the murder, only to find a demon behind
+            it -- the same evil that terrorized her in the original film as a nun -- Valak, whom she
+            once again soon comes to encounter.
+        </item>
+        <item>When his parents are killed, billionaire playboy Bruce Wayne relocates to Asia, where
+            he is mentored by Henri Ducard and Ra\'s Al Ghul in how to fight evil. When learning
+            about the plan to wipe out evil in Gotham City by Ducard, Bruce prevents this plan from
+            getting any further and heads back to his home. Back in his original surroundings, Bruce
+            adopts the image of a bat to strike fear into the criminals and the corrupt as the icon
+            known as \"Batman"\. But it doesn't stay quiet for long.
+        </item>
+
+        <item>Coriolanus Snow at age 18, years before he would become the tyrannical President of
+            Panem. Young Coriolanus is handsome and charming, and though the Snow family has fallen
+            on hard times, he sees a chance for a change in his fortunes when he is chosen to be a
+            mentor for the Tenth Hunger Games. Only to have his elation dashed when he is assigned
+            to mentor the girl tribute from impoverished District 12.
+        </item>
+        <item>Sam, an Indian-American teen, lives in an idyllic suburb with her conservative mother
+            and her assimilated father. Sam\'s cultural insecurities grow due to her estranged
+            friend, Tamira, who mysteriously carries around an empty mason jar all the time. In a
+            moment of anger, Sam breaks Tamira\'s jar and unleashes an ancient Indian demonic force
+            that kidnaps Tamira. Sam searches for Tamira, following the trail of a young man who
+            performed a deadly ritual, until the demonic entity starts targeting her, murdering her
+            boyfriend and shattering her reality with terrifying visions. Sam must band together
+            with her parents and a sympathetic teacher to save Tamira and put an end to the terror
+            of the demon.
+        </item>
+        <item>For hundreds of years, vampires have lived in peace and harmony among humans, but this
+            way of life is interrupted when a human girl discovers the true identity of two vampire
+            brothers. One brother\’s thirst for blood vows to kill the girl in order to protect his
+            kind, while the other races against time to protect her. In the end, only one will
+            survive.
+        </item>
+        <item>Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James
+            Gordon, and new District Attorney Harvey Dent successfully begin to round up the
+            criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind
+            known only as \"The Joker"\ appears in Gotham, creating a new wave of chaos. Batman\'s
+            struggle against The Joker becomes deeply personal, forcing him to \"confront everything
+            he believes"\ and improve his technology to stop him. A love triangle develops between
+            Bruce Wayne, Dent, and Rachel Dawes.
+        </item>
+        <item>Carol Danvers AKA Captain Marvel has reclaimed her identity from the tyrannical Kree
+            and taken revenge on the Supreme Intelligence. But unintended consequences see Carol
+            shouldering the burden of a destabilized universe. When her duties send her to an
+            anomalous wormhole linked to a Kree revolutionary, her powers become entangled with that
+            of Jersey City super-fan Kamala Khan, aka Ms. Marvel, and Carol\'s estranged niece, now
+            S.A.B.E.R. astronaut Captain Monica Rambeau.
+        </item>
+        <item>A boy becomes the Messiah of nomads on a desert planet that has giant worms that
+            protect a commodity called Spice. Spice changes people into travelers, mystics and
+            madmen. What price will he pay to become the new ruler of their universe?
+        </item>
+        <item>A troubled security guard begins working at Freddy Fazbear\'s Pizza. During his first
+            night on the job, he realizes that the night shift won\'t be so easy to get through.
+            Pretty soon he will unveil what actually happened at Freddy\'s.
+        </item>
+        <item>\"In 1970s Korea, when both art and dreams are censored, a film director dreams of a
+            masterpiece. After his successful debut, Director KIM endures scathing attacks from
+            critics who call him a specialist in trashy dramas. After finishing his latest feature
+            \u2018Cobweb\u2019, he has vivid dreams over several days of an alternative ending to
+            the film. Sensing that if he can just shoot those scenes as he envisioned them, a
+            masterpiece will surely emerge, he tries to arrange just two days of additional
+            shooting. However, the rewritten script fails to pass censorship, and his actors
+            can\u2019t make sense of the new ending. Between the tangled schedule, the opposition of
+            the producer, and the collision between these fantastic scenes dancing before his eyes
+            and the harsh conditions of reality, Director KIM feels he is about to go insane, but he
+            pushes on regardless\u2026 \u201CIf I can just change the ending, a masterpiece will
+            emerge. All I need is two days!\u201D\"
+        </item>
+    </array>
+
     <array name="movie_booking">
-        <!--        Showing Movies-->
+
         <item>https://www.cgv.vn/en/kumarn.html</item>
         <item>https://www.cgv.vn/default/exorcist-believer.html</item>
         <item>https://www.cgv.vn/default/dr-cheon.html</item>
@@ -76,7 +200,7 @@
         <item>https://www.cgv.vn/default/the-nun-2.html</item>
         <item>https://www.cgv.vn/default/batman-begins.html</item>
 
-        <!--        Upcoming Movies -->
+
         <item>https://www.cgv.vn/default/the-hunger-games.html</item>
         <item>https://www.cgv.vn/default/it-lives-inside.html</item>
         <item>https://www.cgv.vn/default/nguoi-mat-troi.html</item>
@@ -86,8 +210,9 @@
         <item>https://www.cgv.vn/default/5-dem-kinh-hoang.html</item>
         <item>https://www.cgv.vn/default/cobweb.html</item>
     </array>
+
     <integer-array name="movie_duration">
-        <!--        Showing Movies-->
+
         <item>88</item>
         <item>111</item>
         <item>98</item>
@@ -97,18 +222,19 @@
         <item>110</item>
         <item>140</item>
 
-        <!--        Upcoming Movies -->
+
         <item>165</item>
         <item>98</item>
-        <item>0</item>
+        <item>100</item>
         <item>152</item>
         <item>105</item>
         <item>150</item>
         <item>110</item>
         <item>132</item>
     </integer-array>
+
     <array name="movie_category">
-        <!--        Showing Movies-->
+
         <item>Horror</item>
         <item>Horror</item>
         <item>Comedy</item>
@@ -118,7 +244,7 @@
         <item>Horror</item>
         <item>Action</item>
 
-        <!--        Upcoming Movies -->
+
         <item>Action</item>
         <item>Horror</item>
         <item>Action</item>
@@ -128,4 +254,8 @@
         <item>Horror</item>
         <item>Comedy</item>
     </array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
