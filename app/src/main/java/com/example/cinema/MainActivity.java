@@ -19,15 +19,25 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     public static ArrayList<Movie> movieList;
+    // Favorite Movie List
     public static ArrayList<Movie> favMovieList;
+    public static boolean FRAG_HOME_VISIBILITY = true;
+    public static boolean FRAG_FAVORITE_VISIBILITY = false;
+    public static boolean FRAG_SEARCH_VISIBILITY = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Create MovieInit object to generate Movies
         MovieInit movieInit = new MovieInit(this);
         movieList = movieInit.movieInit();
+
+        // Dummy data for favorite Movie List
         initFavMovieList();
 
+        //Create Bottom Navigation View and set OnClickListener
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_nav_menu);
         navigation.setOnNavigationItemSelectedListener(this);
     }
@@ -42,8 +52,29 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.nav_home){
+            if (!FRAG_HOME_VISIBILITY) {
+                FRAG_HOME_VISIBILITY = true;
+                FRAG_FAVORITE_VISIBILITY = false;
+                FRAG_SEARCH_VISIBILITY = false;
+                //loadFragment(new HomeFragment());
+            }
+        }
         if (item.getItemId() == R.id.nav_favorite){
-            loadFragment(new FavoriteFragment());
+            if (!FRAG_FAVORITE_VISIBILITY) {
+                FRAG_HOME_VISIBILITY = false;
+                FRAG_FAVORITE_VISIBILITY = true;
+                FRAG_SEARCH_VISIBILITY = false;
+                loadFragment(new FavoriteFragment());
+            }
+        }
+        if (item.getItemId() == R.id.nav_search){
+            if (!FRAG_SEARCH_VISIBILITY) {
+                FRAG_HOME_VISIBILITY = false;
+                FRAG_FAVORITE_VISIBILITY = false;
+                FRAG_SEARCH_VISIBILITY = true;
+                //loadFragment(new SearchFragment());
+            }
         }
         return false;
     }
