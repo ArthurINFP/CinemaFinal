@@ -11,67 +11,96 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
         <WebView
             android:id="@+id/Trailer"
             android:layout_width="match_parent"
             android:layout_height="250sp">
         </WebView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
-            android:text="Description"
-            android:textSize="50sp">
-        </TextView>
+
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
             android:layout_marginLeft="170dp"
-            android:layout_marginTop="310dp">
+            android:layout_below="@+id/Trailer"
+            android:id="@+id/Rating">
         </RatingBar>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="360dp"
+            android:layout_below="@id/Rating"
+            android:text="Description"
+            android:textSize="50sp"
+            android:id="@+id/descriptor">
+        </TextView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descriptor"
             android:text="LOREM ISPUM"
             android:textSize="25sp"
             android:id="@+id/Description">
         </TextView>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/WriteComments"
-            android:hint="Write your comments here"
-            android:layout_alignEnd="@+id/Description"
-            android:layout_marginTop="500dp"
-            android:background="@drawable/textcolor"
-            android:textColor="#000000"
-            android:textColorHint="#000000">
-        </EditText>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:background="@drawable/ripple_effect"
-            android:layout_alignEnd="@+id/WriteComments"
-            android:layout_marginTop="600dp">
-        </Button>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Comments"
             android:textSize="50sp"
             android:id="@+id/Comments"
-            android:layout_marginTop="430dp"
-            android:layout_alignStart="@+id/WriteComments">
+            android:layout_below="@id/Description">
         </TextView>
+
+
+        <EditText
+            android:layout_marginTop="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/WriteComments"
+            android:hint="Write your comments here"
+            android:layout_below="@+id/Description"
+            android:background="@drawable/textcolor"
+            android:textColor="#000000"
+            android:textColorHint="#000000">
+        </EditText>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:background="@drawable/ripple_effect"
+            android:layout_below="@+id/WriteComments"
+            android:layout_marginLeft="310dp"
+            android:id="@+id/SubmitButton">
+        </Button>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/WrtittenComments"
+            android:layout_below="@id/SubmitButton"
+            android:text="Placeholder comments"
+            android:textColor="#000000"
+            android:textSize="20sp">
+        </TextView>
+
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:gravity="bottom"
             android:layout_marginTop="680dp">
+
+
             <Button
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
@@ -79,6 +108,8 @@
                 android:id="@+id/BookTicket"
                 android:background="@drawable/ripple_effect">
             </Button>
+
+
             <Button
                 android:layout_marginStart="10dp"
                 android:layout_width="190dp"
