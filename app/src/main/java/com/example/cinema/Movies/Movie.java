@@ -8,12 +8,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Movie implements Serializable {
-    int id, duration;
+    int id;
+    int duration;
     Drawable thumbnail;
-    String title, description,category,trailerUrl, bookingUrl,releaseDate;
+    String title;
+    String description;
+    String category;
+    String trailerUrl;
+    String bookingUrl;
+    String releaseDate;
     float ticketPrice;
+    float rating;
     ArrayList<String> comment;
-
     boolean favorite;
 
 
@@ -100,6 +106,7 @@ public class Movie implements Serializable {
     public float getTicketPrice() {
         return ticketPrice;
     }
+    public float getRating() { return rating; }
 
     public ArrayList<String> getComment() {
         return comment;
@@ -139,6 +146,8 @@ public class Movie implements Serializable {
     public void setTicketPrice(float ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
+
+    public void setRating(float rating) { this.rating = rating; }
 
     public void setComment(ArrayList<String> comment) {
         this.comment = comment;
