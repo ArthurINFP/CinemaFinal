@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.cinema.Fragment.FavoriteFragment;
+import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.Movies.MovieInit;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -81,8 +82,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_display,fragment);
+        transaction.replace(R.id.fragment_display, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (MovieFragment.isFullScreen()) {
+            MovieFragment.exitFullScreen();
+        }
+        else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStackImmediate();
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 }
