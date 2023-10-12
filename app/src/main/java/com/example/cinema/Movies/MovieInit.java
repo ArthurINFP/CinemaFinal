@@ -47,7 +47,7 @@ public class MovieInit {
         // Create a movie list through above data
         for (int i=0;i<title.length;i++){
             movieList.add(new Movie(i,thumbnail[i],trailer[i],booking[i],title[i],description[i]
-                    ,200,new ArrayList<String>(),category[i],duration[i],releaseDate[i],false));
+                    ,200, 0f,new ArrayList<String>(),category[i],duration[i],releaseDate[i],false));
         }
         return movieList;
     }

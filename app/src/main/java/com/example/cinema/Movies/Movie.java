@@ -22,51 +22,10 @@ public class Movie implements Serializable {
     ArrayList<String> comment;
     boolean favorite;
 
-
-    public Drawable getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(Drawable thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public String getTrailerUrl() {
-        return trailerUrl;
-    }
-
-    public void setTrailerUrl(String trailerUrl) {
-        this.trailerUrl = trailerUrl;
-    }
-
-    public String getBookingUrl() {
-        return bookingUrl;
-    }
-
-    public void setBookingUrl(String bookingUrl) {
-        this.bookingUrl = bookingUrl;
-    }
-
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public boolean isFavorite() {
-        return favorite;
-    }
-
-    public void setFavorite(boolean favorite) {
-        this.favorite = favorite;
-    }
-
     // Constructor
     public Movie(int id, Drawable thumbnail, String trailerUrlId, String bookingUrlId
-            , String title, String description, float ticketPrice
-            , ArrayList<String> comment, String category, int duration,String releaseDate,boolean favorite) {
+            , String title, String description, float ticketPrice, float rating
+            , ArrayList<String> comment, String category, int duration, String releaseDate, boolean favorite) {
         this.id = id;
         this.thumbnail = thumbnail;
         this.duration = duration;
@@ -75,6 +34,7 @@ public class Movie implements Serializable {
         this.title = title;
         this.description = description;
         this.ticketPrice = ticketPrice;
+        this.rating = rating;
         this.comment = comment;
         this.category = category;
         this.releaseDate = releaseDate;
@@ -85,77 +45,83 @@ public class Movie implements Serializable {
     public int getId() {
         return id;
     }
-
-
-    public String getTrailerUrlId() {
-        return trailerUrl;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getBookingUrlId() {
-        return bookingUrl;
+    public Drawable getThumbnail() {
+        return thumbnail;
+    }
+    public void setThumbnail(Drawable thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getTitle() {
         return title;
     }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTrailerUrl() { return trailerUrl; }
+    public void setTrailerUrl(String trailerUrl) { this.trailerUrl = trailerUrl; }
+
+    public String getBookingUrl() {
+        return bookingUrl;
+    }
+    public void setBookingUrl(String bookingUrl) {
+        this.bookingUrl = bookingUrl;
+    }
 
     public String getDescription() {
         return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public float getTicketPrice() {
         return ticketPrice;
     }
+    public void setTicketPrice(float ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     public float getRating() { return rating; }
+    public void setRating(float rating) { this.rating = rating; }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
 
     public ArrayList<String> getComment() {
         return comment;
+    }
+    public void setComment(ArrayList<String> comment) {
+        this.comment = comment;
     }
 
     public String getCategory() {
         return category;
     }
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTrailerUrlId(String trailerUrlId) {
-        this.trailerUrl = trailerUrlId;
-    }
-
-    public void setBookingUrlId(String bookingUrlId) {
-        this.bookingUrl = bookingUrlId;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setTicketPrice(float ticketPrice) {
-        this.ticketPrice = ticketPrice;
-    }
-
-    public void setRating(float rating) { this.rating = rating; }
-
-    public void setComment(ArrayList<String> comment) {
-        this.comment = comment;
-    }
-
     public void setCategory(String category) {
         this.category = category;
     }
 
-
+    public int getDuration() {
+        return duration;
+    }
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 }
