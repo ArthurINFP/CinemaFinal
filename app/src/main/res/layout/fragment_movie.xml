@@ -134,7 +134,6 @@
                 android:textSize="24sp">
             </TextView>
 
-
             <TextView
                 android:id="@+id/CommentsLabel"
                 android:layout_width="match_parent"
@@ -145,23 +144,25 @@
                 android:textSize="40sp">
             </TextView>
 
-            <TextView
-                android:id="@+id/CommentsList"
+            <EditText
+                android:id="@+id/Commenter"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/CommentsLabel"
-                android:layout_margin="5dp"
-                android:text="Placeholder comments"
+                android:layout_height="40dp"
+                android:layout_below="@+id/CommentsLabel"
+                android:layout_marginVertical="10dp"
+                android:hint="Your name"
+                android:background="@drawable/textcolor"
                 android:textColor="#000000"
-                android:textSize="20sp">
-            </TextView>
+                android:textColorHint="#000000"
+                android:gravity="start">
+            </EditText>
 
             <EditText
                 android:id="@+id/WriteComments"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_below="@+id/CommentsList"
-                android:hint="Write your comments here"
+                android:layout_below="@+id/Commenter"
+                android:hint="Your comment"
                 android:background="@drawable/textcolor"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
@@ -174,15 +175,24 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/WriteComments"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="10dp"
-                android:text="Submit"
-                android:background="@drawable/ripple_effect">
-            </Button>
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/ripple_effect"
+                android:text="Submit"></Button>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/SubmitButton"
+                android:layout_marginTop="5dp"/>
 
         </RelativeLayout>
     </ScrollView>
 
-<!--    Button row  -->
+<!--Button row-->
     <LinearLayout
         android:id="@+id/ButtonRow"
         android:layout_width="fill_parent"

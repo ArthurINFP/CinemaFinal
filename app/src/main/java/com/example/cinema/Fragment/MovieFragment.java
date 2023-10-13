@@ -1,22 +1,30 @@
 package com.example.cinema.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.cinema.MainActivity;
+import com.example.cinema.Movies.Comment;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.R;
+import com.example.cinema.RecyclerView.CommentAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener;
@@ -24,17 +32,25 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFram
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
 public class MovieFragment extends Fragment {
+    public static final String TOAST_ALREADY_IN_FAVORITE = "This Movie is already in your Favorite list.";
+    public static final String TOAST_ADDED_TO_FAVORITE = "Movie has been added to Favorite list.";
     private static final String ARG_MOVIE = "movie";
     private static boolean isFullScreen = false;
     private static YouTubePlayer player;
 
-    private Movie mMovie;
-
+    private Movie movie;
+    private CommentAdapter adapter;
+    private ImageView favorite;
+    private EditText commenter;
+    private EditText commentInput;
+    private Toast toastInstance;
 
     public MovieFragment() { }
 
@@ -50,8 +66,9 @@ public class MovieFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mMovie = (Movie)getArguments().getSerializable(ARG_MOVIE);
+            movie = (Movie)getArguments().getSerializable(ARG_MOVIE);
         }
+        adapter = new CommentAdapter(getContext(), movie.getComments());
     }
 
     @Override
@@ -97,7 +114,7 @@ public class MovieFragment extends Fragment {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 player = youTubePlayer;
-                String url = mMovie.getTrailerUrl();
+                String url = movie.getTrailerUrl();
                 url = url.substring(0, url.indexOf('&'));
                 String videoId = url.substring(url.indexOf("watch?v=")+8);
                 player.loadVideo(videoId, 0);
@@ -107,35 +124,57 @@ public class MovieFragment extends Fragment {
 
         //region Set Movie data to View
         TextView title = view.findViewById(R.id.Title);
-        title.setText(mMovie.getTitle());
+        title.setText(movie.getTitle());
 
-        ImageView favorite = view.findViewById(R.id.Favorite);
-        favorite.setImageResource(mMovie.isFavorite() ? R.drawable.ic_favorited_true : R.drawable.ic_favorite_false);
-        favorite.setTooltipText(mMovie.isFavorite() ? "Favorited" : "Not favorited");
+        favorite = view.findViewById(R.id.Favorite);
+        setFavoriteIcon(movie.isFavorite());
 
         RatingBar rating = view.findViewById(R.id.Rating);
-        rating.setRating(mMovie.getRating());
+        rating.setRating(movie.getRating());
 
         TextView ratingValue = view.findViewById(R.id.RatingValue);
-        ratingValue.setText("" + mMovie.getRating());
+        ratingValue.setText("" + movie.getRating());
 
         TextView price = view.findViewById(R.id.Price);
         DecimalFormat formatter = new DecimalFormat("###,###,###");
-        price.setText(formatter.format(mMovie.getTicketPrice()) + "đ");
+        price.setText(formatter.format(movie.getTicketPrice()) + "đ");
 
         TextView category = view.findViewById(R.id.Category);
-        category.setText("Category: " + mMovie.getCategory());
+        category.setText("Category: " + movie.getCategory());
+
+        TextView duration = view.findViewById(R.id.Duration);
+        duration.setText("Duration: " + movie.getDuration());
 
         TextView releaseDate = view.findViewById(R.id.ReleaseDate);
-        releaseDate.setText("Release date: " + mMovie.getReleaseDate());
+        releaseDate.setText("Release date: " + movie.getReleaseDate());
 
         TextView description = view.findViewById(R.id.Description);
-        description.setText(mMovie.getDescription());
+        description.setText(movie.getDescription());
+
+        commenter = view.findViewById(R.id.Commenter);
+        commentInput = view.findViewById(R.id.WriteComments);
+
+        Button commentSubmit = view.findViewById(R.id.SubmitButton);
+        commentSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submitComment(
+                        commenter.getText().toString(),
+                        commentInput.getText().toString(),
+                        new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date())
+                );
+            }
+        });
+
+        RecyclerView comments = view.findViewById(R.id.Comments);
+        comments.setAdapter(adapter);
+        comments.setLayoutManager(new LinearLayoutManager(getContext()));
 
         Button bookTicket = view.findViewById(R.id.BookTicket);
         Button addFavorite = view.findViewById(R.id.AddFavorite);
         //endregion
 
+        //Book ticket button function
         bookTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,10 +182,19 @@ public class MovieFragment extends Fragment {
             }
         });
 
+        //Add to Favorite button function
         addFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Implement Add to favorite functionality
+                if (MainActivity.favMovieList.contains(movie)) {
+                    toast(getContext(), TOAST_ALREADY_IN_FAVORITE);
+                }
+                else {
+                    movie.setFavorite(true);
+                    MainActivity.favMovieList.add(movie);
+                    setFavoriteIcon(true);
+                    toast(getContext(), TOAST_ADDED_TO_FAVORITE);
+                }
             }
         });
     }
@@ -159,5 +207,24 @@ public class MovieFragment extends Fragment {
         if (isFullScreen) {
             player.toggleFullscreen();
         }
+    }
+
+    private void setFavoriteIcon(boolean value) {
+        favorite.setImageResource(value ? R.drawable.ic_favorite_true : R.drawable.ic_favorite_false);
+        favorite.setTooltipText(value ? "Favorited" : "Not favorited");
+    }
+
+    private void submitComment(String name, String content, String dateTime) {
+        Comment comment = new Comment(name, content, dateTime);
+        movie.addComment(comment);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void toast(Context context, String message) {
+        if (toastInstance != null) {
+            toastInstance.cancel();
+        }
+        toastInstance = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        toastInstance.show();
     }
 }

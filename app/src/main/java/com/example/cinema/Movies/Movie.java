@@ -2,8 +2,6 @@ package com.example.cinema.Movies;
 
 import android.graphics.drawable.Drawable;
 
-import com.example.cinema.MainActivity;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -19,13 +17,13 @@ public class Movie implements Serializable {
     String releaseDate;
     float ticketPrice;
     float rating;
-    ArrayList<String> comment;
+    ArrayList<Comment> comments;
     boolean favorite;
 
     // Constructor
     public Movie(int id, Drawable thumbnail, String trailerUrlId, String bookingUrlId
             , String title, String description, float ticketPrice, float rating
-            , ArrayList<String> comment, String category, int duration, String releaseDate, boolean favorite) {
+            , ArrayList<Comment> comments, String category, int duration, String releaseDate, boolean favorite) {
         this.id = id;
         this.thumbnail = thumbnail;
         this.duration = duration;
@@ -35,7 +33,7 @@ public class Movie implements Serializable {
         this.description = description;
         this.ticketPrice = ticketPrice;
         this.rating = rating;
-        this.comment = comment;
+        this.comments = comments;
         this.category = category;
         this.releaseDate = releaseDate;
         this.favorite = favorite;
@@ -104,11 +102,11 @@ public class Movie implements Serializable {
         this.favorite = favorite;
     }
 
-    public ArrayList<String> getComment() {
-        return comment;
+    public ArrayList<Comment> getComments() {
+        return comments;
     }
-    public void setComment(ArrayList<String> comment) {
-        this.comment = comment;
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
     }
 
     public String getCategory() {
