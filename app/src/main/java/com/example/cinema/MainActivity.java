@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.cinema.Fragment.FavoriteFragment;
 import com.example.cinema.Fragment.MovieFragment;
+import com.example.cinema.Fragment.SearchFragment;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.Movies.MovieInit;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static ArrayList<Movie> movieList;
     // Favorite Movie List
     public static ArrayList<Movie> favMovieList;
+    private Fragment homeFragment,favoriteFragment,searchFragment;
     public static boolean FRAG_HOME_VISIBILITY = true;
     public static boolean FRAG_FAVORITE_VISIBILITY = false;
     public static boolean FRAG_SEARCH_VISIBILITY = false;
@@ -37,11 +39,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         // Dummy data for favorite Movie List
         initFavMovieList();
-
+        // Initialize Fragment
+        initFragment();
         //Create Bottom Navigation View and set OnClickListener
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_nav_menu);
         navigation.setOnNavigationItemSelectedListener(this);
     }
+
+    private void initFragment() {
+        //homeFragment = new HomeFragment();
+        favoriteFragment = new FavoriteFragment();
+        searchFragment = new SearchFragment();
+    }
+
 
     private void initFavMovieList() {
         favMovieList = new ArrayList<>();
@@ -66,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_HOME_VISIBILITY = false;
                 FRAG_FAVORITE_VISIBILITY = true;
                 FRAG_SEARCH_VISIBILITY = false;
-                loadFragment(new FavoriteFragment());
+                loadFragment(favoriteFragment);
             }
         }
         if (item.getItemId() == R.id.nav_search){
@@ -74,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_HOME_VISIBILITY = false;
                 FRAG_FAVORITE_VISIBILITY = false;
                 FRAG_SEARCH_VISIBILITY = true;
-                //loadFragment(new SearchFragment());
+                loadFragment(searchFragment);
             }
         }
         return false;
