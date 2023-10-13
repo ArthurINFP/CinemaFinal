@@ -5,18 +5,23 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.cinema.Movies.Comment;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.R;
+import com.example.cinema.RecyclerView.CommentAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener;
@@ -24,6 +29,9 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFram
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -34,7 +42,9 @@ public class MovieFragment extends Fragment {
     private static YouTubePlayer player;
 
     private Movie mMovie;
-
+    private CommentAdapter adapter;
+    EditText commenter;
+    EditText commentInput;
 
     public MovieFragment() { }
 
@@ -52,6 +62,7 @@ public class MovieFragment extends Fragment {
         if (getArguments() != null) {
             mMovie = (Movie)getArguments().getSerializable(ARG_MOVIE);
         }
+        adapter = new CommentAdapter(getContext(), mMovie.getComments());
     }
 
     @Override
@@ -132,6 +143,25 @@ public class MovieFragment extends Fragment {
         TextView description = view.findViewById(R.id.Description);
         description.setText(mMovie.getDescription());
 
+        commenter = view.findViewById(R.id.Commenter);
+        commentInput = view.findViewById(R.id.WriteComments);
+
+        Button commentSubmit = view.findViewById(R.id.SubmitButton);
+        commentSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submitComment(
+                        commenter.getText().toString(),
+                        commentInput.getText().toString(),
+                        new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date())
+                );
+            }
+        });
+
+        RecyclerView comments = view.findViewById(R.id.Comments);
+        comments.setAdapter(adapter);
+        comments.setLayoutManager(new LinearLayoutManager(getContext()));
+
         Button bookTicket = view.findViewById(R.id.BookTicket);
         Button addFavorite = view.findViewById(R.id.AddFavorite);
         //endregion
@@ -159,5 +189,11 @@ public class MovieFragment extends Fragment {
         if (isFullScreen) {
             player.toggleFullscreen();
         }
+    }
+
+    private void submitComment(String name, String content, String dateTime) {
+        Comment comment = new Comment(name, content, dateTime);
+        mMovie.addComment(comment);
+        adapter.notifyDataSetChanged();
     }
 }

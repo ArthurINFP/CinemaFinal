@@ -5,22 +5,25 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/textcolor">
+        android:background="@drawable/textcolor"
+        android:padding="10dp">
         <TextView
             android:id="@+id/Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Placeholder"
-            android:textSize="25sp"
-            android:textColor="#000000">
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:textStyle="bold">
         </TextView>
         <TextView
             android:id="@+id/CommentDate"
             android:layout_toRightOf="@+id/Name"
+            android:layout_above="@+id/Comment"
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="06/09/2023"
+            android:text="06/09/2023 12:00"
             android:textColor="#000000">
         </TextView>
         <TextView
@@ -28,7 +31,7 @@
             android:layout_below="@+id/Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:text="Placeholder Comments"
             android:textColor="#000000">
         </TextView>
