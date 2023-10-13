@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         transaction.commit();
     }
 
+    //Function to return to previous fragment (or exit fullscreen) when pressing Back
     @Override
     public void onBackPressed() {
         if (MovieFragment.isFullScreen()) {
