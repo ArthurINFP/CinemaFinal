@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_FAVORITE_VISIBILITY = false;
                 FRAG_SEARCH_VISIBILITY = false;
                 //loadFragment(new HomeFragment());
+                return true;
             }
         }
         if (item.getItemId() == R.id.nav_favorite){
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_FAVORITE_VISIBILITY = true;
                 FRAG_SEARCH_VISIBILITY = false;
                 loadFragment(favoriteFragment);
+                return true;
             }
         }
         if (item.getItemId() == R.id.nav_search){
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_FAVORITE_VISIBILITY = false;
                 FRAG_SEARCH_VISIBILITY = true;
                 loadFragment(searchFragment);
+                return true;
             }
         }
         return false;

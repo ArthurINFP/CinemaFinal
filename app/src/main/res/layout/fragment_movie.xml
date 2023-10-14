@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.MovieFragment"
     android:background="@drawable/background_color_radient"
     android:orientation="vertical">
@@ -14,11 +15,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="20dp">
+            android:paddingBottom="20dp"
+            android:background="@drawable/item_color_gradient"
+            android:padding="5dp">
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/Trailer"
                 android:layout_width="match_parent"
+                app:autoPlay="false"
                 android:layout_height="250dp"/>
 
             <TextView
