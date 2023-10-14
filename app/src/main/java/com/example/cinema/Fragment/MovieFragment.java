@@ -39,8 +39,13 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
 public class MovieFragment extends Fragment {
-    public static final String TOAST_ALREADY_IN_FAVORITE = "This Movie is already in your Favorite list.";
-    public static final String TOAST_ADDED_TO_FAVORITE = "Movie has been added to Favorite list.";
+    public static final String TOAST_ADDED_TO_FAVORITE = "Added Movie to Favorite list.";
+    public static final String TOAST_REMOVED_FROM_FAVORITE = "Removed Movie from Favorite list.";
+    public static final String TOAST_NAME_REQUIRED = "Please fill out your name.";
+    public static final String TOAST_COMMENT_REQUIRED = "Please fill out your comment.";
+    public static final String TOAST_COMMENT_SUBMITTED = "Comment submitted.";
+    public static final String TEXT_ADD_FAV = "Add to Favorite";
+    public static final String TEXT_REM_FAV = "Remove from Favorite";
     private static final String ARG_MOVIE = "movie";
     private static boolean isFullScreen = false;
     private static YouTubePlayer player;
@@ -159,6 +164,14 @@ public class MovieFragment extends Fragment {
         commentSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (commenter.getText().length() <= 0) {
+                    toast(getContext(), TOAST_NAME_REQUIRED);
+                    return;
+                }
+                if (commentInput.getText().length() <= 0) {
+                    toast(getContext(), TOAST_COMMENT_REQUIRED);
+                    return;
+                }
                 submitComment(
                         commenter.getText().toString(),
                         commentInput.getText().toString(),
@@ -173,6 +186,8 @@ public class MovieFragment extends Fragment {
 
         Button bookTicket = view.findViewById(R.id.BookTicket);
         Button addFavorite = view.findViewById(R.id.AddFavorite);
+        //Already in favorite -> remove button, else add button
+        addFavorite.setText(movie.isFavorite() ? TEXT_REM_FAV : TEXT_ADD_FAV);
         //endregion
 
         //Book ticket button function
@@ -187,13 +202,20 @@ public class MovieFragment extends Fragment {
         addFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Remove
                 if (MainActivity.favMovieList.contains(movie)) {
-                    toast(getContext(), TOAST_ALREADY_IN_FAVORITE);
+                    movie.setFavorite(false);
+                    MainActivity.favMovieList.remove(movie);
+                    setFavoriteIcon(false);
+                    addFavorite.setText(TEXT_ADD_FAV);
+                    toast(getContext(), TOAST_REMOVED_FROM_FAVORITE);
                 }
+                //Add
                 else {
                     movie.setFavorite(true);
                     MainActivity.favMovieList.add(movie);
                     setFavoriteIcon(true);
+                    addFavorite.setText(TEXT_REM_FAV);
                     toast(getContext(), TOAST_ADDED_TO_FAVORITE);
                 }
             }
@@ -219,6 +241,9 @@ public class MovieFragment extends Fragment {
         Comment comment = new Comment(name, content, dateTime);
         movie.addComment(comment);
         adapter.notifyDataSetChanged();
+        commenter.setText("");
+        commentInput.setText("");
+        toast(getContext(), TOAST_COMMENT_SUBMITTED);
     }
 
     private String durationFormat(int minutes) {
