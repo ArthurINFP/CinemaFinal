@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.cinema.Fragment.FavoriteFragment;
+import com.example.cinema.Fragment.HomeFragment;
 import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.Fragment.SearchFragment;
 import com.example.cinema.Movies.Movie;
@@ -35,6 +36,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState == null) { // Ensure this is a fresh start, not a system-initiated re-creation of the Activity.
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_display, new HomeFragment())
+                    .commit();
+        }
         //Create MovieInit object to generate Movies
         MovieInit movieInit = new MovieInit(this);
         movieList = movieInit.movieInit();
@@ -50,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void initFragment() {
-        //homeFragment = new HomeFragment();
+        homeFragment = new HomeFragment();
         favoriteFragment = new FavoriteFragment();
         searchFragment = new SearchFragment();
     }
@@ -71,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_HOME_VISIBILITY = true;
                 FRAG_FAVORITE_VISIBILITY = false;
                 FRAG_SEARCH_VISIBILITY = false;
-                //loadFragment(new HomeFragment());
+                loadFragment(homeFragment);
             }
         }
         if (item.getItemId() == R.id.nav_favorite){
