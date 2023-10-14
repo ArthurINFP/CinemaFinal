@@ -31,6 +31,11 @@
         android:layout_marginLeft="10dp"
         />
 
-
+    <!--    Frame for fullscreen mode   -->
+    <FrameLayout
+        android:id="@+id/fullscreen_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </LinearLayout>

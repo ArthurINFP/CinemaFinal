@@ -87,7 +87,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                         mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_false));
                         setMovieFavorite(movie, false);
                     } else {
-                        mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorited_true));
+                        mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_true));
                         setMovieFavorite(movie, false);
                     }
                 }
@@ -114,7 +114,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             mvRating.setRating(4);
 
             if (movie.isFavorite()) {
-                mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorited_true));
+                mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_true));
             } else {
                 mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_false));
             }

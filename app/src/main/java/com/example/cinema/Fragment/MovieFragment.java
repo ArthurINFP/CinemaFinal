@@ -44,6 +44,7 @@ public class MovieFragment extends Fragment {
     private static final String ARG_MOVIE = "movie";
     private static boolean isFullScreen = false;
     private static YouTubePlayer player;
+    private static YouTubePlayerView playerView;
 
     private Movie movie;
     private CommentAdapter adapter;
@@ -82,27 +83,25 @@ public class MovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //region YouTube Player setup
-        YouTubePlayerView playerView = view.findViewById(R.id.Trailer);
+        playerView = view.findViewById(R.id.Trailer);
         playerView.setEnableAutomaticInitialization(false);
         getLifecycle().addObserver(playerView);
-
-        FrameLayout fullScreenFrame = view.findViewById(R.id.fullscreen_frame);
 
         playerView.addFullscreenListener(new FullscreenListener() {
             @Override
             public void onEnterFullscreen(@NonNull View view, @NonNull Function0<Unit> function0) {
                 isFullScreen = true;
                 playerView.setVisibility(View.GONE);
-                fullScreenFrame.setVisibility(View.VISIBLE);
-                fullScreenFrame.addView(view);
+                MainActivity.fullscreenFrame.setVisibility(View.VISIBLE);
+                MainActivity.fullscreenFrame.addView(view);
             }
 
             @Override
             public void onExitFullscreen() {
                 isFullScreen = false;
                 playerView.setVisibility(View.VISIBLE);
-                fullScreenFrame.removeAllViews();
-                fullScreenFrame.setVisibility(View.GONE);
+                MainActivity.fullscreenFrame.removeAllViews();
+                MainActivity.fullscreenFrame.setVisibility(View.GONE);
             }
         });
 
@@ -115,7 +114,9 @@ public class MovieFragment extends Fragment {
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 player = youTubePlayer;
                 String url = movie.getTrailerUrl();
-                url = url.substring(0, url.indexOf('&'));
+                if (url.contains("&")) {
+                    url = url.substring(0, url.indexOf('&'));
+                }
                 String videoId = url.substring(url.indexOf("watch?v=")+8);
                 player.loadVideo(videoId, 0);
             }
@@ -143,7 +144,7 @@ public class MovieFragment extends Fragment {
         category.setText("Category: " + movie.getCategory());
 
         TextView duration = view.findViewById(R.id.Duration);
-        duration.setText("Duration: " + movie.getDuration());
+        duration.setText("Duration: " + durationFormat(movie.getDuration()));
 
         TextView releaseDate = view.findViewById(R.id.ReleaseDate);
         releaseDate.setText("Release date: " + movie.getReleaseDate());
@@ -218,6 +219,22 @@ public class MovieFragment extends Fragment {
         Comment comment = new Comment(name, content, dateTime);
         movie.addComment(comment);
         adapter.notifyDataSetChanged();
+    }
+
+    private String durationFormat(int minutes) {
+        String res = "";
+        int hours = 0;
+        if (minutes >= 60) {
+            hours = minutes / 60;
+            minutes -= hours * 60;
+        }
+        if (hours > 0) {
+            res = hours + " hours " + minutes + " minutes";
+        }
+        else {
+            res = minutes + " minutes";
+        }
+        return res;
     }
 
     private void toast(Context context, String message) {

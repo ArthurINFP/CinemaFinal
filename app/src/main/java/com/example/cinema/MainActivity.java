@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.cinema.Fragment.FavoriteFragment;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // Favorite Movie List
     public static ArrayList<Movie> favMovieList;
     private Fragment homeFragment,favoriteFragment,searchFragment;
+    public static FrameLayout fullscreenFrame;
     public static boolean FRAG_HOME_VISIBILITY = true;
     public static boolean FRAG_FAVORITE_VISIBILITY = false;
     public static boolean FRAG_SEARCH_VISIBILITY = false;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //Create Bottom Navigation View and set OnClickListener
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_nav_menu);
         navigation.setOnNavigationItemSelectedListener(this);
+        fullscreenFrame = findViewById(R.id.fullscreen_frame);
     }
 
     private void initFragment() {
