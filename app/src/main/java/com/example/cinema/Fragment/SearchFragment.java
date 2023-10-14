@@ -102,12 +102,10 @@ public class SearchFragment extends Fragment {
             }
         }
 
-        if (newText.isEmpty()){
-            Toast.makeText(getActivity(), "Please enter movie name", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        if (!newText.isEmpty()){
             adapter.filterMovie(filteredMovieList);
         }
+
     }
 
     @Override
@@ -117,7 +115,4 @@ public class SearchFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
-    public void openMovieFragment(Movie movie){
-
-    }
 }

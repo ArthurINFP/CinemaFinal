@@ -1,6 +1,10 @@
 package com.example.cinema.Movies;
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -122,4 +126,6 @@ public class Movie implements Serializable {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
+
 }

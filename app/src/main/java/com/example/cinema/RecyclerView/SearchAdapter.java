@@ -71,14 +71,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             mvTicketPrice = itemView.findViewById(R.id.tv_price);
             mvRating = itemView.findViewById(R.id.rb_rating);
 
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    MovieFragment movieFragment = MovieFragment.newInstance(data.get(getAdapterPosition()));
-//                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
-//                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_display, movieFragment).addToBackStack(null).commit();
-//                }
-//            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MovieFragment movieFragment = MovieFragment.newInstance(data.get(getAdapterPosition()));
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_display, movieFragment).addToBackStack(null).commit();
+                }
+            });
             mvFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,7 +88,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                         setMovieFavorite(movie, false);
                     } else {
                         mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_true));
-                        setMovieFavorite(movie, false);
+                        setMovieFavorite(movie, true);
                     }
                 }
             });
@@ -99,6 +99,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             for (Movie m : MainActivity.movieList) {
                 if (m.getTitle().equals(movie.getTitle())) {
                     m.setFavorite(b);
+                    if (b){
+                        MainActivity.favMovieList.add(m);
+                    }
+                    else {
+                        MainActivity.favMovieList.remove(m);
+                    }
                     break;
                 }
             }
