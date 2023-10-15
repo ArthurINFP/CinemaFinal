@@ -1,6 +1,8 @@
 package com.example.cinema.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -199,7 +201,9 @@ public class MovieFragment extends Fragment {
         bookTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Implement book ticket functionality
+                Intent booking = new Intent(Intent.ACTION_VIEW);
+                booking.setData(Uri.parse(movie.getBookingUrl()));
+                startActivity(booking);
             }
         });
 
