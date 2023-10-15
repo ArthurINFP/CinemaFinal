@@ -2,8 +2,10 @@ package com.example.cinema.RecyclerView;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +76,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         });
 
         holder.bookNow.setOnClickListener(v -> {
-            // Your logic to book a movie
+            Intent booking = new Intent(Intent.ACTION_VIEW);
+            booking.setData(Uri.parse(movie.getBookingUrl()));
+            context.startActivity(booking);
         });
     }
 
