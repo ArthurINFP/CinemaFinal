@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.Movies.MovieInit;
+import com.example.cinema.Movies.MovieManager;
 import com.example.cinema.R;
 import com.example.cinema.RecyclerView.FavoriteAdapter;
 
@@ -65,7 +66,10 @@ public class FavoriteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rcv = view.findViewById(R.id.rcv);
-        adapter = new FavoriteAdapter(getActivity(),MainActivity.favMovieList);
+
+        ArrayList<Movie> favoriteMovies = MovieManager.getInstance().getFavoriteMovies();
+
+        adapter = new FavoriteAdapter(getActivity(), favoriteMovies);
         rcv.setAdapter(adapter);
         rcv.setLayoutManager(new GridLayoutManager(getContext(),2));
     }

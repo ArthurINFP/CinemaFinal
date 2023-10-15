@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Comment;
 import com.example.cinema.Movies.Movie;
+import com.example.cinema.Movies.MovieManager;
 import com.example.cinema.R;
 import com.example.cinema.RecyclerView.CommentAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -33,6 +34,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import kotlin.Unit;
@@ -57,6 +59,9 @@ public class MovieFragment extends Fragment {
     private EditText commenter;
     private EditText commentInput;
     private Toast toastInstance;
+
+    private MovieManager movieManager = MovieManager.getInstance();
+
 
     public MovieFragment() { }
 
@@ -202,24 +207,23 @@ public class MovieFragment extends Fragment {
         addFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Remove
-                if (MainActivity.favMovieList.contains(movie)) {
+                if (movie.isFavorite()) {
                     movie.setFavorite(false);
-                    MainActivity.favMovieList.remove(movie);
+                    movieManager.removeFavoriteMovie(movie);
                     setFavoriteIcon(false);
                     addFavorite.setText(TEXT_ADD_FAV);
                     toast(getContext(), TOAST_REMOVED_FROM_FAVORITE);
-                }
-                //Add
-                else {
+                } else {
                     movie.setFavorite(true);
-                    MainActivity.favMovieList.add(movie);
+                    movieManager.addToFavorites(movie);
                     setFavoriteIcon(true);
                     addFavorite.setText(TEXT_REM_FAV);
                     toast(getContext(), TOAST_ADDED_TO_FAVORITE);
                 }
             }
         });
+
+
     }
 
     public static boolean isFullScreen() {

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
+import com.example.cinema.Movies.MovieManager;
 import com.example.cinema.R;
 
 import java.util.ArrayList;
@@ -96,19 +97,19 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
 
         private void setMovieFavorite(Movie movie, boolean b) {
-            for (Movie m : MainActivity.movieList) {
+            for (Movie m : MovieManager.getInstance().getMovies()) {  // <-- Updated here
                 if (m.getTitle().equals(movie.getTitle())) {
                     m.setFavorite(b);
-                    if (b){
-                        MainActivity.favMovieList.add(m);
-                    }
-                    else {
-                        MainActivity.favMovieList.remove(m);
+                    if (b) {
+                        MovieManager.getInstance().addToFavorites(m);  // <-- Updated here
+                    } else {
+                        MovieManager.getInstance().removeFavoriteMovie(m);  // <-- Updated here
                     }
                     break;
                 }
             }
         }
+
 
         public void update(Movie movie) {
             mvThumbnail.setImageDrawable(movie.getThumbnail());

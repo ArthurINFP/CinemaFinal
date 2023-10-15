@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
+import com.example.cinema.Movies.MovieManager;
 import com.example.cinema.R;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                     dialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            for (Movie m:MainActivity.movieList){
+                            for (Movie m: MovieManager.getInstance().getMovies()){
                                 if (m.getTitle().equals(movie.getTitle())){
                                     m.setFavorite(false);
                                 }

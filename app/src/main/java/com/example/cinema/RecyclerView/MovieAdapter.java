@@ -2,15 +2,20 @@ package com.example.cinema.RecyclerView;
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
+import com.example.cinema.Movies.MovieManager;
 import com.example.cinema.R;
 
 import java.util.ArrayList;
@@ -44,11 +49,28 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         holder.rating.setText(String.valueOf(movie.getRating()));
         holder.releaseDate.setText(String.valueOf(movie.getReleaseDate()));
 
+        if (movie.isFavorite()) {
+            holder.addToInterest.setTextColor(Color.RED);
+        } else {
+            holder.addToInterest.setTextColor(Color.WHITE);
+        }
+
+
         holder.addToInterest.setOnClickListener(v -> {
-            if (!interestList.contains(movie)) {
-                interestList.add(movie);
-                Toast.makeText(context, "Added to interest list!", Toast.LENGTH_SHORT).show();
+            if (!MovieManager.getInstance().getFavoriteMovies().contains(movie)) {
+                MovieManager.getInstance().addToFavorites(movie);
+                movie.setFavorite(true);
+                Toast.makeText(context, "Added to favorites!", Toast.LENGTH_SHORT).show();
+                holder.addToInterest.setTextColor(Color.RED);
+
+            } else {
+                MovieManager.getInstance().removeFavoriteMovie(movie);
+                movie.setFavorite(false);
+                Toast.makeText(context, "Removed from favorites!", Toast.LENGTH_SHORT).show();
+                holder.addToInterest.setTextColor(Color.WHITE);
             }
+            // Notify the adapter about the change
+            notifyDataSetChanged();
         });
 
         holder.bookNow.setOnClickListener(v -> {

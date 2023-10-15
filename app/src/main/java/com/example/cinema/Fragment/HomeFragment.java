@@ -8,8 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.Movies.MovieInit;
+import com.example.cinema.Movies.MovieManager;
 import com.example.cinema.R;
 import com.example.cinema.RecyclerView.MovieAdapter;
 import java.util.ArrayList;
@@ -22,16 +25,32 @@ public class HomeFragment extends Fragment {
     private ArrayList<Movie> horrorMoviesList, actionMoviesList, otherMoviesList;
     private boolean isDescendingOrder = true; // default sorting order
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        MovieInit movieInit = new MovieInit(getContext());
-        ArrayList<Movie> allMovies = movieInit.movieInit(); // This line collects the full movie list, if needed
+        // Here, get the movie lists directly from MainActivity.movieList
+        MovieManager movieManager = MovieManager.getInstance();
+        ArrayList<Movie> allMoviesList = movieManager.getMovies();
 
-        horrorMoviesList = movieInit.getHorrorMovies();
-        actionMoviesList = movieInit.getActionMovies();
-        otherMoviesList = movieInit.getOtherMovies();
+        horrorMoviesList = new ArrayList<>();
+        actionMoviesList = new ArrayList<>();
+        otherMoviesList = new ArrayList<>();
+
+        for (Movie movie : allMoviesList) {
+            switch (movie.getCategory()) {
+                case "Horror":
+                    horrorMoviesList.add(movie);
+                    break;
+                case "Action":
+                    actionMoviesList.add(movie);
+                    break;
+                default:
+                    otherMoviesList.add(movie);
+                    break;
+            }
+        }
 
         horrorAdapter = setUpRecyclerView(rootView, R.id.recycler_view_horror, horrorMoviesList);
         actionAdapter = setUpRecyclerView(rootView, R.id.recycler_view_action, actionMoviesList);

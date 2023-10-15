@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
+import com.example.cinema.Movies.MovieManager;
 import com.example.cinema.R;
 import com.example.cinema.RecyclerView.SearchAdapter;
 
@@ -76,7 +77,8 @@ public class SearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         sv = view.findViewById(R.id.sv);
         rcv = view.findViewById(R.id.rcv);
-        adapter = new SearchAdapter(getActivity(),MainActivity.movieList);
+        adapter = new SearchAdapter(getActivity(), MovieManager.getInstance().getMovies());
+
 
         rcv.setAdapter(adapter);
         rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -96,7 +98,7 @@ public class SearchFragment extends Fragment {
 
     private void filter(String newText) {
         ArrayList<Movie> filteredMovieList = new ArrayList<>();
-        for (Movie movie: MainActivity.movieList){
+        for (Movie movie: MovieManager.getInstance().getMovies()){
             if (movie.getTitle().toLowerCase().contains(newText.toLowerCase())){
                 filteredMovieList.add(movie);
             }

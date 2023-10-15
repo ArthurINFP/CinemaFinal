@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.example.cinema.Fragment.FavoriteFragment;
 import com.example.cinema.Fragment.HomeFragment;
@@ -16,16 +15,15 @@ import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.Fragment.SearchFragment;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.Movies.MovieInit;
+import com.example.cinema.Movies.MovieManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    public static ArrayList<Movie> movieList;
-    // Favorite Movie List
-    public static ArrayList<Movie> favMovieList;
-    private Fragment homeFragment,favoriteFragment,searchFragment;
+    MovieManager movieManager = MovieManager.getInstance();
+    private Fragment homeFragment, favoriteFragment, searchFragment;
     public static FrameLayout fullscreenFrame;
     public static boolean FRAG_HOME_VISIBILITY = true;
     public static boolean FRAG_FAVORITE_VISIBILITY = false;
@@ -36,17 +34,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) { // Ensure this is a fresh start, not a system-initiated re-creation of the Activity.
+        // Initialize Movies and store them in the MovieManager
+        initMovies();
+        // Dummy data for favorite Movie List
+        initFavMovieList();
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_display, new HomeFragment())
                     .commit();
         }
-        //Create MovieInit object to generate Movies
-        MovieInit movieInit = new MovieInit(this);
-        movieList = movieInit.movieInit();
 
-        // Dummy data for favorite Movie List
-        initFavMovieList();
+
         // Initialize Fragment
         initFragment();
         //Create Bottom Navigation View and set OnClickListener
@@ -55,18 +53,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         fullscreenFrame = findViewById(R.id.fullscreen_frame);
     }
 
+    private void initMovies() {
+        MovieInit movieInit = new MovieInit(this);
+        ArrayList<Movie> initializedMovies = movieInit.movieInit();
+        movieManager.setMovies(initializedMovies);
+    }
+
     private void initFragment() {
         homeFragment = new HomeFragment();
         favoriteFragment = new FavoriteFragment();
         searchFragment = new SearchFragment();
     }
 
-
     private void initFavMovieList() {
-        favMovieList = new ArrayList<>();
-        for (int i=0;i<5;i++){
+        ArrayList<Movie> movieList = movieManager.getMovies();
+        for (int i = 0; i < 5; i++) {
             movieList.get(i).setFavorite(true);
-            favMovieList.add(movieList.get(i));
+            movieManager.addToFavorites(movieList.get(i));
         }
     }
 
