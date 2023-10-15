@@ -201,9 +201,7 @@ public class MovieFragment extends Fragment {
         bookTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent booking = new Intent(Intent.ACTION_VIEW);
-                booking.setData(Uri.parse(movie.getBookingUrl()));
-                startActivity(booking);
+                startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(movie.getBookingUrl())));
             }
         });
 

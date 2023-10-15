@@ -1,5 +1,7 @@
 package com.example.cinema.Movies;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,7 +11,7 @@ import androidx.annotation.NonNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie implements Serializable {
+public class Movie implements Serializable, Parcelable {
     int id;
     int duration;
     Drawable thumbnail;
@@ -128,4 +130,72 @@ public class Movie implements Serializable {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeInt(this.duration);
+        Bitmap bitmap = (Bitmap)((BitmapDrawable) this.thumbnail).getBitmap();
+        dest.writeParcelable(bitmap, flags);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeString(this.category);
+        dest.writeString(this.trailerUrl);
+        dest.writeString(this.bookingUrl);
+        dest.writeString(this.releaseDate);
+        dest.writeFloat(this.ticketPrice);
+        dest.writeFloat(this.rating);
+        dest.writeList(this.comments);
+        dest.writeByte(this.favorite ? (byte) 1 : (byte) 0);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.id = source.readInt();
+        this.duration = source.readInt();
+        this.thumbnail = source.readParcelable(Drawable.class.getClassLoader());
+        this.title = source.readString();
+        this.description = source.readString();
+        this.category = source.readString();
+        this.trailerUrl = source.readString();
+        this.bookingUrl = source.readString();
+        this.releaseDate = source.readString();
+        this.ticketPrice = source.readFloat();
+        this.rating = source.readFloat();
+        this.comments = new ArrayList<Comment>();
+        source.readList(this.comments, Comment.class.getClassLoader());
+        this.favorite = source.readByte() != 0;
+    }
+
+    protected Movie(Parcel in) {
+        this.id = in.readInt();
+        this.duration = in.readInt();
+        this.thumbnail = in.readParcelable(Drawable.class.getClassLoader());
+        this.title = in.readString();
+        this.description = in.readString();
+        this.category = in.readString();
+        this.trailerUrl = in.readString();
+        this.bookingUrl = in.readString();
+        this.releaseDate = in.readString();
+        this.ticketPrice = in.readFloat();
+        this.rating = in.readFloat();
+        this.comments = new ArrayList<Comment>();
+        in.readList(this.comments, Comment.class.getClassLoader());
+        this.favorite = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel source) {
+            return new Movie(source);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 }

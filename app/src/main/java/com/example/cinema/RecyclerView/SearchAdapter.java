@@ -117,8 +117,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             mvCategory.setText(movie.getCategory());
             mvDuration.setText(Integer.toString(movie.getDuration()));
             mvReleaseDate.setText(movie.getReleaseDate());
-            mvTicketPrice.setText(Float.toString(movie.getTicketPrice()));
-            mvRating.setRating(4);
+            mvTicketPrice.setText(Float.toString(movie.getTicketPrice())+"đ");
+            mvRating.setRating(movie.getRating());
 
             if (movie.isFavorite()) {
                 mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_true));

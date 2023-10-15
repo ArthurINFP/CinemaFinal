@@ -45,10 +45,10 @@ public class FavoriteFragment extends Fragment {
     }
 
 
-    public static FavoriteFragment newInstance(ArrayList<Movie> movie) {
+    public static FavoriteFragment newInstance(ArrayList<Movie> data) {
         FavoriteFragment fragment = new FavoriteFragment();
         Bundle args = new Bundle();
-        //args.putParcelableArrayList(ARG_MOVIE,movie);
+        args.putParcelableArrayList(ARG_MOVIE,data);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,7 +57,7 @@ public class FavoriteFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
+            data = getArguments().getParcelableArrayList(ARG_MOVIE);
         }
 
     }

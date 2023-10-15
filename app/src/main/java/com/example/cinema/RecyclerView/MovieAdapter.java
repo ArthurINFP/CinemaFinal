@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.Movies.MovieManager;
@@ -58,6 +60,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         }
 
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MovieFragment movieFragment = MovieFragment.newInstance(movieList.get(holder.getAdapterPosition() ));
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_display, movieFragment).addToBackStack(null).commit();
+            }
+        });
         holder.addToInterest.setOnClickListener(v -> {
             if (!MovieManager.getInstance().getFavoriteMovies().contains(movie)) {
                 MovieManager.getInstance().addToFavorites(movie);
