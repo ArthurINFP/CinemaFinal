@@ -2,6 +2,9 @@
     <string name="app_name">Cinema</string>
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="sort">Sort Movies</string>
 
 
     <array name="movie_title">
@@ -67,6 +70,25 @@
         <item>10/27/2023</item>
         <item>10/13/2023</item>
     </array>
+    <array name="movie_ratings">
+        <item>4.5</item>
+        <item>3.5</item>
+        <item>4.2</item>
+        <item>4.8</item>
+        <item>5.0</item>
+        <item>3.8</item>
+        <item>4.1</item>
+        <item>4.7</item>
+        <item>4.6</item>
+        <item>3.9</item>
+        <item>4.3</item>
+        <item>4.4</item>
+        <item>4.0</item>
+        <item>3.7</item>
+        <item>4.9</item>
+        <item>3.6</item>
+    </array>
+
     <array name="movie_description">
 
         <item>The story happened when \" Ging \" took his son on vacation at the house in the middle

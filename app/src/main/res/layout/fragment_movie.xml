@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.MovieFragment"
     android:background="@drawable/background_color_radient"
     android:orientation="vertical">
@@ -14,11 +15,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="20dp">
+            android:paddingBottom="20dp"
+            android:background="@drawable/item_color_gradient"
+            android:padding="5dp">
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/Trailer"
                 android:layout_width="match_parent"
+                app:autoPlay="false"
                 android:layout_height="250dp"/>
 
             <TextView
@@ -49,6 +53,7 @@
                 android:numStars="5"
                 android:stepSize="0.1"
                 android:rating="1.7"
+                android:isIndicator="true"
                 android:progressTint="#FFFF00"
                 android:secondaryProgressTint="#00000000">
             </RatingBar>
@@ -203,8 +208,8 @@
 
         <Button
             android:id="@+id/BookTicket"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
             android:text="Book Ticket"
             android:background="@drawable/ripple_effect">
         </Button>
@@ -212,17 +217,12 @@
         <Button
             android:id="@+id/AddFavorite"
             android:layout_marginStart="10dp"
-            android:layout_width="190dp"
-            android:layout_height="wrap_content"
-            android:text="Add To Favorite"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:paddingVertical="0dp"
+            android:text="Add to Favorite"
             android:background="@drawable/ripple_effect">
         </Button>
     </LinearLayout>
 
-<!--    Frame for fullscreen mode   -->
-    <FrameLayout
-        android:id="@+id/fullscreen_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
 </FrameLayout>

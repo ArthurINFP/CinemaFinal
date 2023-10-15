@@ -7,21 +7,24 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.FrameLayout;
 
 import com.example.cinema.Fragment.FavoriteFragment;
+import com.example.cinema.Fragment.HomeFragment;
 import com.example.cinema.Fragment.MovieFragment;
+import com.example.cinema.Fragment.SearchFragment;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.Movies.MovieInit;
+import com.example.cinema.Movies.MovieManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    public static ArrayList<Movie> movieList;
-    // Favorite Movie List
-    public static ArrayList<Movie> favMovieList;
+    MovieManager movieManager = MovieManager.getInstance();
+    private Fragment homeFragment, favoriteFragment, searchFragment;
+    public static FrameLayout fullscreenFrame;
     public static boolean FRAG_HOME_VISIBILITY = true;
     public static boolean FRAG_FAVORITE_VISIBILITY = false;
     public static boolean FRAG_SEARCH_VISIBILITY = false;
@@ -31,23 +34,42 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Create MovieInit object to generate Movies
-        MovieInit movieInit = new MovieInit(this);
-        movieList = movieInit.movieInit();
-
+        // Initialize Movies and store them in the MovieManager
+        initMovies();
         // Dummy data for favorite Movie List
         initFavMovieList();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_display, new HomeFragment())
+                    .commit();
+        }
 
+
+        // Initialize Fragment
+        initFragment();
         //Create Bottom Navigation View and set OnClickListener
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_nav_menu);
         navigation.setOnNavigationItemSelectedListener(this);
+        fullscreenFrame = findViewById(R.id.fullscreen_frame);
+    }
+
+    private void initMovies() {
+        MovieInit movieInit = new MovieInit(this);
+        ArrayList<Movie> initializedMovies = movieInit.movieInit();
+        movieManager.setMovies(initializedMovies);
+    }
+
+    private void initFragment() {
+        homeFragment = new HomeFragment();
+        favoriteFragment = new FavoriteFragment();
+        searchFragment = new SearchFragment();
     }
 
     private void initFavMovieList() {
-        favMovieList = new ArrayList<>();
-        for (int i=0;i<5;i++){
+        ArrayList<Movie> movieList = movieManager.getMovies();
+        for (int i = 0; i < 5; i++) {
             movieList.get(i).setFavorite(true);
-            favMovieList.add(movieList.get(i));
+            movieManager.addToFavorites(movieList.get(i));
         }
     }
 
@@ -58,7 +80,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_HOME_VISIBILITY = true;
                 FRAG_FAVORITE_VISIBILITY = false;
                 FRAG_SEARCH_VISIBILITY = false;
-                //loadFragment(new HomeFragment());
+                loadFragment(homeFragment);
+                return true;
+
             }
         }
         if (item.getItemId() == R.id.nav_favorite){
@@ -66,7 +90,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_HOME_VISIBILITY = false;
                 FRAG_FAVORITE_VISIBILITY = true;
                 FRAG_SEARCH_VISIBILITY = false;
-                loadFragment(new FavoriteFragment());
+                loadFragment(favoriteFragment);
+                return true;
             }
         }
         if (item.getItemId() == R.id.nav_search){
@@ -74,7 +99,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_HOME_VISIBILITY = false;
                 FRAG_FAVORITE_VISIBILITY = false;
                 FRAG_SEARCH_VISIBILITY = true;
-                //loadFragment(new SearchFragment());
+                loadFragment(searchFragment);
+                return true;
             }
         }
         return false;
@@ -87,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         transaction.commit();
     }
 
+    //Function to return to previous fragment (or exit fullscreen) when pressing Back
     @Override
     public void onBackPressed() {
         if (MovieFragment.isFullScreen()) {

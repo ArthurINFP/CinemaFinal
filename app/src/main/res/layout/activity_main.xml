@@ -8,29 +8,33 @@
     android:background="@drawable/background_color_radient"
     tools:context=".MainActivity">
 
-
     <FrameLayout
+        android:id="@+id/fragment_display"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="11"
         android:paddingTop="5dp"
         android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:id="@+id/fragment_display"/>
+        android:paddingLeft="5dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_menu"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="bottom"
-        android:background="@drawable/nav_background_curve"
-        android:id="@+id/bottom_nav_menu"
-        app:menu="@menu/bottom_nav_menu"
+        android:layout_marginTop="2dp"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        />
+        android:background="@drawable/nav_background_curve"
+        app:menu="@menu/bottom_nav_menu"/>
 
-
+    <!-- Frame for fullscreen mode -->
+    <FrameLayout
+        android:id="@+id/fullscreen_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </LinearLayout>
