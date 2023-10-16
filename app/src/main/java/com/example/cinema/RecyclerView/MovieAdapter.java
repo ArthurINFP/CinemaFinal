@@ -58,6 +58,28 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         } else {
             holder.addToInterest.setTextColor(Color.WHITE);
         }
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (!MovieManager.getInstance().getFavoriteMovies().contains(movie)) {
+                    movie.setFavorite(true);
+                    MovieManager.getInstance().addToFavorites(movie);
+                    Toast.makeText(context, "Added to favorites!", Toast.LENGTH_SHORT).show();
+                    holder.addToInterest.setTextColor(Color.RED);
+
+                } else {
+                    movie.setFavorite(false);
+                    MovieManager.getInstance().removeFavoriteMovie(movie);
+                    Toast.makeText(context, "Removed from favorites!", Toast.LENGTH_SHORT).show();
+                    holder.addToInterest.setTextColor(Color.WHITE);
+                }
+                // Notify the adapter about the change
+                notifyDataSetChanged();
+                return false;
+
+
+            }
+        });
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

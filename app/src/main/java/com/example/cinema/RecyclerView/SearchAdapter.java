@@ -71,6 +71,21 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             mvReleaseDate = itemView.findViewById(R.id.tv_release_date);
             mvTicketPrice = itemView.findViewById(R.id.tv_price);
             mvRating = itemView.findViewById(R.id.rb_rating);
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Movie movie = data.get(getAdapterPosition());
+                    if (movie.isFavorite()) {
+                        mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_false));
+                        setMovieFavorite(movie, false);
+                    } else {
+                        mvFavorite.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_true));
+                        setMovieFavorite(movie, true);
+                    }
+                    return false;
+
+                }
+            });
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
