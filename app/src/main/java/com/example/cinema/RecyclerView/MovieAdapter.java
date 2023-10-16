@@ -70,14 +70,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         });
         holder.addToInterest.setOnClickListener(v -> {
             if (!MovieManager.getInstance().getFavoriteMovies().contains(movie)) {
-                MovieManager.getInstance().addToFavorites(movie);
                 movie.setFavorite(true);
+                MovieManager.getInstance().addToFavorites(movie);
                 Toast.makeText(context, "Added to favorites!", Toast.LENGTH_SHORT).show();
                 holder.addToInterest.setTextColor(Color.RED);
 
             } else {
-                MovieManager.getInstance().removeFavoriteMovie(movie);
                 movie.setFavorite(false);
+                MovieManager.getInstance().removeFavoriteMovie(movie);
                 Toast.makeText(context, "Removed from favorites!", Toast.LENGTH_SHORT).show();
                 holder.addToInterest.setTextColor(Color.WHITE);
             }
