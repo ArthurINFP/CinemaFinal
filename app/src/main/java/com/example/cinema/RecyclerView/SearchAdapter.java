@@ -2,6 +2,7 @@ package com.example.cinema.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
@@ -127,7 +129,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
 
         public void update(Movie movie) {
-            mvThumbnail.setImageDrawable(movie.getThumbnail());
+            Glide.with(context).load(Base64.decode(movie.getBase64Image(), Base64.DEFAULT)).into(mvThumbnail);
             mvName.setText(movie.getTitle());
             mvCategory.setText(movie.getCategory());
             mvDuration.setText(Integer.toString(movie.getDuration()));

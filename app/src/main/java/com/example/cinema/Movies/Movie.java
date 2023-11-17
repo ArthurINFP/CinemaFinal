@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Movie implements Serializable, Parcelable {
     int id;
     int duration;
-    Drawable thumbnail;
+//    Drawable thumbnail;
     String title;
     String description;
     String category;
@@ -23,15 +23,20 @@ public class Movie implements Serializable, Parcelable {
     String releaseDate;
     float ticketPrice;
     float rating;
+
+
+
     ArrayList<Comment> comments;
     boolean favorite;
 
+    String base64Image;
+
     // Constructor
-    public Movie(int id, Drawable thumbnail, String trailerUrlId, String bookingUrlId
+    public Movie(int id, String base64Image, String trailerUrlId, String bookingUrlId
             , String title, String description, float ticketPrice, float rating
             , ArrayList<Comment> comments, String category, int duration, String releaseDate, boolean favorite) {
         this.id = id;
-        this.thumbnail = thumbnail;
+        this.base64Image = base64Image;
         this.duration = duration;
         this.trailerUrl = trailerUrlId;
         this.bookingUrl = bookingUrlId;
@@ -44,35 +49,51 @@ public class Movie implements Serializable, Parcelable {
         this.releaseDate = releaseDate;
         this.favorite = favorite;
     }
+    // This no argument constructor is required for retrieving data from firebase
+    public Movie() {
+    }
 
     // All setter and getter
+    public String getBase64Image() {
+        return base64Image;
+    }
+
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public Drawable getThumbnail() {
-        return thumbnail;
-    }
-    public void setThumbnail(Drawable thumbnail) {
-        this.thumbnail = thumbnail;
-    }
 
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getTrailerUrl() { return trailerUrl; }
-    public void setTrailerUrl(String trailerUrl) { this.trailerUrl = trailerUrl; }
+    public String getTrailerUrl() {
+        return trailerUrl;
+    }
+
+    public void setTrailerUrl(String trailerUrl) {
+        this.trailerUrl = trailerUrl;
+    }
 
     public String getBookingUrl() {
         return bookingUrl;
     }
+
     public void setBookingUrl(String bookingUrl) {
         this.bookingUrl = bookingUrl;
     }
@@ -80,6 +101,7 @@ public class Movie implements Serializable, Parcelable {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -87,6 +109,7 @@ public class Movie implements Serializable, Parcelable {
     public float getTicketPrice() {
         return ticketPrice;
     }
+
     public void setTicketPrice(float ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
@@ -94,16 +117,23 @@ public class Movie implements Serializable, Parcelable {
     public String getReleaseDate() {
         return releaseDate;
     }
+
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public float getRating() { return rating; }
-    public void setRating(float rating) { this.rating = rating; }
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
 
     public boolean isFavorite() {
         return favorite;
     }
+
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
@@ -111,6 +141,7 @@ public class Movie implements Serializable, Parcelable {
     public ArrayList<Comment> getComments() {
         return comments;
     }
+
     public void addComment(Comment comment) {
         this.comments.add(comment);
     }
@@ -118,6 +149,7 @@ public class Movie implements Serializable, Parcelable {
     public String getCategory() {
         return category;
     }
+
     public void setCategory(String category) {
         this.category = category;
     }
@@ -125,6 +157,7 @@ public class Movie implements Serializable, Parcelable {
     public int getDuration() {
         return duration;
     }
+
     public void setDuration(int duration) {
         this.duration = duration;
     }
@@ -139,8 +172,7 @@ public class Movie implements Serializable, Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeInt(this.duration);
-        Bitmap bitmap = (Bitmap)((BitmapDrawable) this.thumbnail).getBitmap();
-        dest.writeParcelable(bitmap, flags);
+        dest.writeString(this.base64Image);
         dest.writeString(this.title);
         dest.writeString(this.description);
         dest.writeString(this.category);
@@ -156,7 +188,7 @@ public class Movie implements Serializable, Parcelable {
     public void readFromParcel(Parcel source) {
         this.id = source.readInt();
         this.duration = source.readInt();
-        this.thumbnail = source.readParcelable(Drawable.class.getClassLoader());
+        this.base64Image = source.readString();
         this.title = source.readString();
         this.description = source.readString();
         this.category = source.readString();
@@ -173,7 +205,7 @@ public class Movie implements Serializable, Parcelable {
     protected Movie(Parcel in) {
         this.id = in.readInt();
         this.duration = in.readInt();
-        this.thumbnail = in.readParcelable(Drawable.class.getClassLoader());
+        this.base64Image = in.readString();
         this.title = in.readString();
         this.description = in.readString();
         this.category = in.readString();

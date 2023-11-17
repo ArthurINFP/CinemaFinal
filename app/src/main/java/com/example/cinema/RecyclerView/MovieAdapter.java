@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
@@ -49,7 +51,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         holder.title.setText(movie.getTitle());
         holder.category.setText(movie.getCategory());
         holder.duration.setText(String.valueOf(movie.getDuration()));
-        holder.thumbnail.setImageDrawable(movie.getThumbnail());
+//        holder.thumbnail.setImageDrawable(movie.getThumbnail());
+        Glide.with(context).load(Base64.decode(movie.getBase64Image(), Base64.DEFAULT)).into(holder.thumbnail);
         holder.rating.setText(String.valueOf(movie.getRating()));
         holder.releaseDate.setText(String.valueOf(movie.getReleaseDate()));
 

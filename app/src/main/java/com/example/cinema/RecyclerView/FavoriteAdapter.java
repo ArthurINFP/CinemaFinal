@@ -2,6 +2,7 @@ package com.example.cinema.RecyclerView;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.MainActivity;
 import com.example.cinema.Movies.Movie;
@@ -105,7 +107,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         public void update(Movie m) {
 
             tvName.setText(m.getTitle());
-            ivItem.setImageDrawable(m.getThumbnail());
+
+            Glide.with(context).load(Base64.decode(m.getBase64Image(), Base64.DEFAULT)).into(ivItem);
         }
     }
 }

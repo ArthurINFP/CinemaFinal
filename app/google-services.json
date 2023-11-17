@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "646661788753",
+    "firebase_url": "https://cinema-b3b4c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "cinema-b3b4c",
+    "storage_bucket": "cinema-b3b4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646661788753:android:bedfe4dca055e99a7f9470",
+        "android_client_info": {
+          "package_name": "com.example.cinema"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJvX73M3EQdSKq3ILiSyTP835UwGXyz9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
