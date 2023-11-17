@@ -1,5 +1,6 @@
 package com.example.cinema.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -78,6 +79,7 @@ public class MovieFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             movie = (Movie)getArguments().getSerializable(ARG_MOVIE);
         }

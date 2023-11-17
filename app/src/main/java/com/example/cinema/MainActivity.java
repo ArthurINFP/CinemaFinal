@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     MovieManager movieManager = MovieManager.getInstance();
+    ProgressDialog dialog;
     private Fragment homeFragment, favoriteFragment, searchFragment;
     public static FrameLayout fullscreenFrame;
     public static boolean FRAG_HOME_VISIBILITY = true;
@@ -40,9 +42,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Collecting movies");
+        dialog.setMessage("Please wait for a few second");
+        dialog.setCancelable(false);
+        dialog.show();;
         // Initialize Movies and store them in the MovieManager
         initMovies();
-        // Dummy data for favorite Movie List
         // Upload the data into the database (one time only)
         //initMovieInFirebase(movieManager.getMovies());
     }
@@ -77,15 +84,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         movieManager.setMovies(temp);
         initFragment();
         initFavMovieList();
-
-
-
-        // Initialize Fragment
-
         //Create Bottom Navigation View and set OnClickListener
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_nav_menu);
         navigation.setOnNavigationItemSelectedListener(this);
         fullscreenFrame = findViewById(R.id.fullscreen_frame);
+        dialog.dismiss();
     }
 
     private void initFragment() {
