@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         dialog = new ProgressDialog(this);
         dialog.setTitle("Collecting movies");
-        dialog.setMessage("Please wait for a few second");
+        dialog.setMessage("Please wait for a few seconds");
+        dialog.setIcon(getDrawable(R.drawable.img));
         dialog.setCancelable(false);
         dialog.show();;
         // Initialize Movies and store them in the MovieManager
