@@ -44,6 +44,7 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
 public class MovieFragment extends Fragment {
+    //region Constants
     public static final String TOAST_ADDED_TO_FAVORITE = "Added Movie to Favorite list.";
     public static final String TOAST_REMOVED_FROM_FAVORITE = "Removed Movie from Favorite list.";
     public static final String TOAST_NAME_REQUIRED = "Please fill out your name.";
@@ -52,6 +53,8 @@ public class MovieFragment extends Fragment {
     public static final String TEXT_ADD_FAV = "Add to Favorite";
     public static final String TEXT_REM_FAV = "Remove from Favorite";
     private static final String ARG_MOVIE = "movie";
+    //endregion
+
     private static boolean isFullScreen = false;
     private static YouTubePlayer player;
     private static YouTubePlayerView playerView;

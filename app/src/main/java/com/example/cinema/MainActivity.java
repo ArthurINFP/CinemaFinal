@@ -3,25 +3,33 @@ package com.example.cinema;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.cinema.Fragment.FavoriteFragment;
 import com.example.cinema.Fragment.HomeFragment;
+import com.example.cinema.Fragment.MapFragment;
 import com.example.cinema.Fragment.MovieFragment;
 import com.example.cinema.Fragment.SearchFragment;
 import com.example.cinema.Movies.Movie;
 import com.example.cinema.Movies.MovieManager;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,11 +48,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     MovieManager movieManager = MovieManager.getInstance();
     ProgressDialog dialog;
-    private Fragment homeFragment, favoriteFragment, searchFragment;
+    private Fragment homeFragment, favoriteFragment, searchFragment, mapFragment;
     public static FrameLayout fullscreenFrame;
     public static boolean FRAG_HOME_VISIBILITY = true;
     public static boolean FRAG_FAVORITE_VISIBILITY = false;
     public static boolean FRAG_SEARCH_VISIBILITY = false;
+
+    public FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //set notification for movies
         createNotificationChannel();
         checkAndRequestNotificationPermission();
+
+        //Map
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
 
@@ -108,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         homeFragment = new HomeFragment();
         favoriteFragment = new FavoriteFragment();
         searchFragment = new SearchFragment();
+        mapFragment = MapFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_display, homeFragment)
                 .commit();
@@ -219,6 +233,36 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                                 Log.d("initDatabase","Failed");
                             }
                         });
+            }
+        }
+    }
+
+    public void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MapFragment.FINE_PERMISSION_CODE);
+            return;
+        }
+        Task<Location> task = fusedLocationProviderClient.getLastLocation();
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    ((MapFragment) mapFragment).currentLocation = location;
+                    ((MapFragment) mapFragment).map.getMapAsync((MapFragment) mapFragment);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MapFragment.FINE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLocation();
+            }
+            else {
+                Toast.makeText(this, "Location permission is denied. Cannot get your location.", Toast.LENGTH_SHORT).show();
             }
         }
     }

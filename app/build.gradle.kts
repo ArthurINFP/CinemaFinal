@@ -42,7 +42,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-//    YouTubePlayer
+    // YouTubePlayer
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
 
     // Import the BoM for the Firebase platform
@@ -52,7 +52,11 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-database")
 
-    //Glide to convert base64String to drawable
+    // Glide to convert base64String to drawable
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
+    // Google Map
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 }
