@@ -149,31 +149,48 @@
         </LinearLayout>
 
         <!-- BUTTONS -->
+        <!-- BUTTONS -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginTop="8dp"
-            android:gravity="bottom">
+            android:gravity="center">
 
-            <Button
-                android:id="@+id/add_to_interest"
-                android:layout_width="0dp"
+            <!-- First Row: Like and Book Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="5dp"
-                android:text="Like"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@android:color/holo_blue_light" />
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/add_to_interest"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Like"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@android:color/holo_blue_light" />
+
+                <Button
+                    android:id="@+id/book_now"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Book"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@android:color/holo_red_light" />
+            </LinearLayout>
+
+            <!-- Second Row: Share Button -->
             <Button
-                android:id="@+id/book_now"
-                android:layout_width="0dp"
+                android:id="@+id/share"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Book"
+                android:text="Share"
                 android:textColor="@android:color/white"
-                android:backgroundTint="@android:color/holo_red_light" />
+                android:backgroundTint="@android:color/holo_green_light" />
         </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

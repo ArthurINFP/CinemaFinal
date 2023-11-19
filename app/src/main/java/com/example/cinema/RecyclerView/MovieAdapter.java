@@ -143,6 +143,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
             booking.setData(Uri.parse(movie.getBookingUrl()));
             context.startActivity(booking);
         });
+
+        holder.share.setOnClickListener(v -> {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            String shareBody = "Check out this movie: " + movie.getTitle();
+            String shareSubject = "Movie Recommendation";
+
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSubject);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+
+            context.startActivity(Intent.createChooser(shareIntent, "Share using"));
+        });
+
     }
 
     @Override
