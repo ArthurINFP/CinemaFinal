@@ -24,6 +24,12 @@ import com.example.cinema.Movies.Movie;
 import com.example.cinema.Movies.MovieManager;
 import com.example.cinema.R;
 
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import android.os.Build;
+
+
 import java.util.ArrayList;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
@@ -94,20 +100,42 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
             }
         });
         holder.addToInterest.setOnClickListener(v -> {
+            String message;
             if (!MovieManager.getInstance().getFavoriteMovies().contains(movie)) {
                 movie.setFavorite(true);
                 MovieManager.getInstance().addToFavorites(movie);
-                Toast.makeText(context, "Added to favorites!", Toast.LENGTH_SHORT).show();
+                message = "Added " + movie.getTitle() + " to favorites!";
                 holder.addToInterest.setTextColor(Color.RED);
-
             } else {
                 movie.setFavorite(false);
                 MovieManager.getInstance().removeFavoriteMovie(movie);
-                Toast.makeText(context, "Removed from favorites!", Toast.LENGTH_SHORT).show();
+                message = "Removed " + movie.getTitle() + " from favorites.";
                 holder.addToInterest.setTextColor(Color.WHITE);
             }
-            // Notify the adapter about the change
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             notifyDataSetChanged();
+
+            // Create and display a notification
+            // In MovieAdapter, when creating a notification
+
+            if (hasNotificationPermission()) {
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "movie_channel_id")
+                        .setSmallIcon(android.R.drawable.ic_dialog_info)
+                        .setContentTitle("Movie Interest")
+                        .setContentText(message)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+                try {
+                    notificationManager.notify((int) System.currentTimeMillis(), builder.build());
+                } catch (SecurityException e) {
+                    Toast.makeText(context, "Failed to send notification: permission denied.", Toast.LENGTH_SHORT).show();
+                    // Log the exception or handle it as needed for your app
+                }
+            } else {
+                Toast.makeText(context, "Notification permission not granted", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
         holder.bookNow.setOnClickListener(v -> {
@@ -121,4 +149,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     public int getItemCount() {
         return movieList.size();
     }
+
+    private boolean hasNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return NotificationManagerCompat.from(context).areNotificationsEnabled();
+        }
+        return true; // For versions below Android 13, the permission is not needed.
+    }
+
 }
