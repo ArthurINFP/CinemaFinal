@@ -1,12 +1,14 @@
 package com.example.cinema;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -46,8 +48,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+
     MovieManager movieManager = MovieManager.getInstance();
     ProgressDialog dialog;
+    private static int LOGIN_REGISTER_ACTIVITY_REQUEST_CODE= 123;
     private Fragment homeFragment, favoriteFragment, searchFragment, mapFragment;
     public static FrameLayout fullscreenFrame;
     public static boolean FRAG_HOME_VISIBILITY = true;
@@ -61,14 +65,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dialog = new ProgressDialog(this);
-        dialog.setTitle("Collecting movies");
-        dialog.setMessage("Please wait for a few seconds");
-        dialog.setIcon(getDrawable(R.drawable.img));
-        dialog.setCancelable(false);
-        dialog.show();;
-        // Initialize Movies and store them in the MovieManager
-        initMovies();
+        startActivityForResult(new Intent(this, LoginAndRegisterActivity.class),LOGIN_REGISTER_ACTIVITY_REQUEST_CODE);
+
         // Upload the data into the database (one time only)
         //initMovieInFirebase(movieManager.getMovies());
 
@@ -80,6 +78,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOGIN_REGISTER_ACTIVITY_REQUEST_CODE){
+            if (resultCode== Activity.RESULT_OK){
+                dialog = new ProgressDialog(this);
+                dialog.setTitle("Collecting movies");
+                dialog.setMessage("Please wait for a few seconds");
+                dialog.setIcon(getDrawable(R.drawable.img));
+                dialog.setCancelable(false);
+                dialog.show();;
+                // Initialize Movies and store them in the MovieManager
+                initMovies();
+            }
+        }
+
+    }
 
     private void initMovies() {
 //        MovieInit movieInit = new MovieInit(this);

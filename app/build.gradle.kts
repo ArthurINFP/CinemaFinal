@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.android.material:material:1.8.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -51,6 +52,7 @@ dependencies {
     // Add the dependency for the Realtime Database library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-auth")
 
     // Glide to convert base64String to drawable
     implementation ("com.github.bumptech.glide:glide:4.12.0")
@@ -62,4 +64,6 @@ dependencies {
 
     //Splash screen
     implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
+    // Lottie animation
+    implementation ("com.airbnb.android:lottie:3.4.0")
 }
