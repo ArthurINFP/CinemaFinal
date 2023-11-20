@@ -66,7 +66,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_margin="16dp"
-                android:text="@string/sort" />
+                android:text="@string/sort"
+                android:background="@android:drawable/screen_background_light_transparent"
+                android:textColor="#FFFFFF"/>
 
             <TextView
                 android:id="@+id/title_horror"
@@ -76,13 +78,15 @@
                 android:gravity="center"
                 android:text="Horror Movies"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:background="@android:drawable/screen_background_dark_transparent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_horror"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="horizontal" />
+                android:scrollbars="horizontal"
+                android:background="@android:drawable/screen_background_dark_transparent"/>
 
             <TextView
                 android:id="@+id/title_action"
@@ -93,13 +97,15 @@
                 android:gravity="center"
                 android:text="Action Movies"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:background="@android:drawable/screen_background_dark_transparent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_action"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="horizontal" />
+                android:scrollbars="horizontal"
+                android:background="@android:drawable/screen_background_dark_transparent"/>
 
             <TextView
                 android:id="@+id/title_other"
@@ -110,13 +116,15 @@
                 android:gravity="center"
                 android:text="Other Movies"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:background="@android:drawable/screen_background_dark_transparent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_other"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="horizontal" />
+                android:scrollbars="horizontal"
+                android:background="@android:drawable/screen_background_dark_transparent"/>
 
         </LinearLayout>
 
