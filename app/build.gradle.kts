@@ -59,4 +59,7 @@ dependencies {
     // Google Map
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    //Splash screen
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
 }

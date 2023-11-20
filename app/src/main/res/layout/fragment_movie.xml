@@ -184,7 +184,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/ripple_effect"
+                android:backgroundTint="@android:drawable/screen_background_light_transparent"
                 android:text="Submit"></Button>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -208,20 +208,22 @@
 
         <Button
             android:id="@+id/BookTicket"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
             android:text="Book Ticket"
-            android:background="@drawable/ripple_effect">
+            android:backgroundTint="@android:drawable/screen_background_dark_transparent"
+            android:textColor="#FFFFFF">
         </Button>
 
         <Button
             android:id="@+id/AddFavorite"
             android:layout_marginStart="10dp"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
             android:paddingVertical="0dp"
             android:text="Add to Favorite"
-            android:background="@drawable/ripple_effect">
+            android:backgroundTint="@android:drawable/screen_background_dark_transparent"
+            android:textColor="#FFFFFF">
         </Button>
     </LinearLayout>
 
