@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -238,6 +240,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public void getLocation() {
+        ((MapFragment) mapFragment).mainActivity = this;
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MapFragment.FINE_PERMISSION_CODE);
             return;
@@ -249,6 +252,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 if (location != null) {
                     ((MapFragment) mapFragment).currentLocation = location;
                     ((MapFragment) mapFragment).map.getMapAsync((MapFragment) mapFragment);
+                }
+                else {
+                    checkLocationService();
                 }
             }
         });
@@ -264,6 +270,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             else {
                 Toast.makeText(this, "Location permission is denied. Cannot get your location.", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    public void checkLocationService() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        boolean gpsEnabled = false;
+        boolean networkEnabled = false;
+
+        try {
+            gpsEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch(Exception ex) {}
+
+        try {
+            networkEnabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch(Exception ex) {}
+
+        if(!gpsEnabled && !networkEnabled) {
+            Toast.makeText(this, "Please turn on Location Service," +
+                    " then Refresh to search for nearest cinemas.", Toast.LENGTH_SHORT).show();
         }
     }
 }
