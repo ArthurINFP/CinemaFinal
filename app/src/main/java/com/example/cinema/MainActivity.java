@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static boolean FRAG_HOME_VISIBILITY = true;
     public static boolean FRAG_FAVORITE_VISIBILITY = false;
     public static boolean FRAG_SEARCH_VISIBILITY = false;
+    public static boolean FRAG_MAP_VISIBILITY = false;
 
     public FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -159,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_HOME_VISIBILITY = true;
                 FRAG_FAVORITE_VISIBILITY = false;
                 FRAG_SEARCH_VISIBILITY = false;
+                FRAG_MAP_VISIBILITY = false;
                 loadFragment(homeFragment);
                 return true;
 
@@ -169,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_HOME_VISIBILITY = false;
                 FRAG_FAVORITE_VISIBILITY = true;
                 FRAG_SEARCH_VISIBILITY = false;
+                FRAG_MAP_VISIBILITY = false;
                 loadFragment(favoriteFragment);
                 return true;
             }
@@ -178,7 +181,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_HOME_VISIBILITY = false;
                 FRAG_FAVORITE_VISIBILITY = false;
                 FRAG_SEARCH_VISIBILITY = true;
+                FRAG_MAP_VISIBILITY = false;
                 loadFragment(searchFragment);
+                return true;
+            }
+        }
+        if (item.getItemId() == R.id.nav_map){
+            if (!FRAG_SEARCH_VISIBILITY) {
+                FRAG_HOME_VISIBILITY = false;
+                FRAG_FAVORITE_VISIBILITY = false;
+                FRAG_SEARCH_VISIBILITY = false;
+                FRAG_MAP_VISIBILITY = true;
+                loadFragment(new MapFragment());
                 return true;
             }
         }
