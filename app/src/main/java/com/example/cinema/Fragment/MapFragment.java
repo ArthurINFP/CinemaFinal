@@ -159,6 +159,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
     }
 
     public void nextLocation() {
+        if (googleMap == null) {
+            Toast.makeText(mainActivity, "Please turn on Location Service and grant permission, then Refresh to find cinema location.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (targetCinema == null) {
+            refreshMap();
+            return;
+        }
         int currentCinemaIndex = cinemas.indexOf(targetCinema);
         if (currentCinemaIndex + 1 < cinemas.size()) {
             setTargetCinema(cinemas.get(currentCinemaIndex + 1));
