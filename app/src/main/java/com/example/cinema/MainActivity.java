@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 FRAG_FAVORITE_VISIBILITY = false;
                 FRAG_SEARCH_VISIBILITY = false;
                 FRAG_MAP_VISIBILITY = true;
-                loadFragment(new MapFragment());
+                loadFragment(mapFragment);
                 return true;
             }
         }
