@@ -1,6 +1,6 @@
 # CinemaFinal
 ## Introduction
-Welcome to CinemaFinal, this project is the updated version of Cinema. Built with Java, this app offers a seamless and engaging way to explore, favorite, and book movie tickets. Utilizing Firebase Authentication, Google Maps API, and YouTube WebView integration, CinemaApp delivers a comprehensive and user-friendly experience.
+Welcome to CinemaFinal, this project is the updated version of Cinema. Built with Java, this app offers a seamless and engaging way to explore, favorite, and book movie tickets. Utilizing Firebase Authentication, Google Maps API, and YouTube WebView integration.
 
 ## Features
 
